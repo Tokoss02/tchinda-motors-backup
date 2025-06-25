@@ -1,0 +1,14 @@
+# Node
+node_modules/
+.env
+
+# Next.js
+/frontend/.next/
+/frontend/out/
+
+# NestJS
+/backend/dist/
+/backend/uploads/
+
+Frontend/public/videos/hero.mp4
+*.mp4
