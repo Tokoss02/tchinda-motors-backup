@@ -10,5 +10,7 @@ node_modules/
 /backend/dist/
 /backend/uploads/
 
+
+# Ignore large videos
 Frontend/public/videos/hero.mp4
 *.mp4

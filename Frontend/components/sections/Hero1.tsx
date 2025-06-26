@@ -12,7 +12,7 @@ export default function Hero1() {
 				playsInline
 				aria-hidden="true"
 			>
-				<source src="/videos/heros.mp4" type="video/mp4" />
+				<source src="/videos/hero.mp4" type="video/mp4" />
 			</video>
 
 			{/* 🔲 Overlay for styling (optional) */}
