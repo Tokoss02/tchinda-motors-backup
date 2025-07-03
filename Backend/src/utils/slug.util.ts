@@ -5,13 +5,14 @@ export function generateCarSlug(
   trimLevel: string,
   engine: string,
   year: string,
-  color: string,
+  exteriorColor: string,
   unique: string
 ): string {
-  return `${slugify(brand)}-${slugify(modelCar)}-${slugify(trimLevel)}-${slugify(engine)}-${slugify(year)}-${slugify(color)}-${unique}`;
+  return `${slugify(brand)}-${slugify(modelCar)}-${slugify(trimLevel)}-${slugify(engine)}-${slugify(year)}-${slugify(exteriorColor)}-${unique}`;
 }
 
-function slugify(text: string): string {
+function slugify(text: string | undefined | null): string {
+  if (!text) return 'unknown'; // or ''
   return text
     .toLowerCase()
     .replace(/\s+/g, '-')       // Replace spaces with dashes

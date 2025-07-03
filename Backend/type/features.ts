@@ -1,7 +1,7 @@
 
 
 export const INTERIOR_FEATURES = [
-  "AUX audio in",
+   "AUX audio in",
   "Climate control",
   "Cooled front seats",
   "Cruise control",
@@ -12,7 +12,13 @@ export const INTERIOR_FEATURES = [
   "Power Mirrors",
   "Heated Seats",
   "Dual-zone Climate Zones",
-  "Tri-zone Climate Zones"
+  "Tri-zone Climate Zones",
+  "Bluetooth system",
+  "Android Auto",
+  "Wireless Charger",
+  "Apple Car Play",
+  "USB & Auxiliary Cable",
+  "Steering Switches",
 ];
 
 export const EXTERIOR_FEATURES = [
@@ -22,75 +28,62 @@ export const EXTERIOR_FEATURES = [
   "Fog lights",
   "Keyless go",
   "Headlights",
+  "LED headlights",
   "Daytime Running Lights (DRL)",
   "Roof Rails",
-  "Spoiler"
+  "Spoiler",
+  "Rain Sensing Wipers",
 ];
 
 export const SAFETY_FEATURES = [
-  "ABS / EBD",
-  "Airbags(front and side)",
-  "LED headlights",
-  "Rear wheel drive",
+ "ABS / EBD",
+  "Airbags (front and side)",
   "Front Airbags",
   "Rear Airbags",
   "Stability Control",
   "Blind Spot Monitor",
   "Autonomous Emergency Braking (AEB)",
-  "Lane Keep Assist"
+  "Lane Keep Assist",
+  "Rear wheel drive",
+  "Vehicle Stability Control",
+  "Tyre Pressure Warning System",
+  "Traction Control",
+  "Lane Keep Assist System (LKAS)",
+  "Anti-Theft Alarm System",
+  "Adaptive Cruise Control",
 ];
 
 export const COMFORT_CONVENIENCE_FEATURES = [
-  "Navigation system",
+ "Navigation system",
   "Parking sensor rear",
-  "Power locks",
-  "Manual Windows",
-  "Power Windows",
   "Parking sensor front",
   "Rear Camera",
   "Front Camera",
-  "Sport Package"
-];
-
-
-export const CAR_FEATURES = [
-  'Bluetooth system',
-  'Android Auto',
-  'Wireless Charger',
-  'Power Steering',
-  'Power Trunk',
-  'Power Windows',
-  'Steering Switches',
-  'Vehicle Stability Control',
-  'Front Speakers',
-  'Apple Car Play',
+  "Power locks",
+  "Manual Windows",
+  "Power Windows",
+  "Power Steering",
+  "Power Trunk",
+  "Push Start",
+  "Auto Brake Hold",
+  "Rear AC Vents",
+  "Parking Assist",
+  "Sport Package",
+  "Multiple Off-Road Option Selector",
   
-  'Auto Brake Hold',
-  'Push Start',
-  'Heated Seats',
-  'Parking Assist',
-  'Airbags (front and side)',
-  'Rear Speakers',
-  'USB & Auxiliary Cable',
-  'Rain Sensing Wipers',
-  'Rear AC Vents',
-  'Tyre Pressure Warning System',
-  'Traction Control',
-  'Lane Keep Assist System (LKAS)',
-  'Anti-Theft Alarm System',
-  'USB',
-  'Multiple Off-Road Option Selector',
-  'Leather Seats',
-  'Power Seats',
-  'Cruise Control',
 ];
+
+
+export const OTHERS_FEATURES = [
+  "Front Speakers",
+  "Rear Speakers",]
 
 export const ALL_FEATURES = {
   interior: INTERIOR_FEATURES,
   exterior: EXTERIOR_FEATURES,
   safety: SAFETY_FEATURES,
   comfortConvenience: COMFORT_CONVENIENCE_FEATURES,
-  otherFeatures: CAR_FEATURES,
+  otherFeatures: OTHERS_FEATURES,
 };
 
 // Optional flat array
@@ -99,5 +92,5 @@ export const ALL_FEATURES_FLAT = [
   ...EXTERIOR_FEATURES,
   ...SAFETY_FEATURES,
   ...COMFORT_CONVENIENCE_FEATURES,
-  ...CAR_FEATURES,
+  ...OTHERS_FEATURES,
 ];

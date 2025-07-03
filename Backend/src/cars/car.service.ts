@@ -102,8 +102,8 @@ export class CarService {
 
   async findByBrandAndModelSlug(brandSlug: string, modelSlug: string): Promise<Car[]> {
     return this.carModel.find({ brandSlug, modelSlug })
-    .sort({ createdAt: -1 }) // ✅ get most recent
-    .exec();
+      .sort({ createdAt: -1 }) // ✅ get most recent
+      .exec();
   }
 
   // Create a new car
@@ -121,14 +121,15 @@ export class CarService {
       // Save to generate _id
       const savedCar = await newCar.save();
 
-      // Generate a unique carSlug using model, engine, year, color and last 6 of _id
+
+      // Generate a unique carSlug using model, engine, year, exteriorColor and last 6 of _id
       const uniqueCarSlug = generateCarSlug(
         createCarDto.brand,
         createCarDto.modelCar,
-        createCarDto.trimLevel,
+        createCarDto.trimLevel || 'base',
         `${createCarDto.engine}l`,
         String(createCarDto.year),
-        createCarDto.color,
+        createCarDto.exteriorColor,
         (savedCar._id as Types.ObjectId).toString().slice(-6)// last 6 chars of ObjectId
       );
       console.log('✅ Generated Slug:', uniqueCarSlug);
@@ -149,17 +150,19 @@ export class CarService {
 
 
   // Update car details
-  async update(id: string, carData: UpdateCarDto): Promise<Car> {
-    try {
-      const updatedCar = await this.carModel.findByIdAndUpdate(id, carData, { new: true });
-      if (!updatedCar) {
-        throw new NotFoundException('Car not found');
-      }
-      return updatedCar;
-    } catch (err) {
-      console.error(`Error updating car with ID ${id}:`, err);
-      throw err instanceof NotFoundException ? err : new InternalServerErrorException('Error updating car');
+  async update(id: string, updatedData: Partial<Car>, images: Express.Multer.File[]) {
+    const existing = await this.carModel.findById(id);
+    if (!existing) throw new NotFoundException('Car not found');
+
+    if (images.length > 0) {
+      updatedData.images = [
+        ...(existing.images || []),
+        ...images.map(img => `/uploads/cars/${img.filename}`),
+      ];
     }
+
+    await this.carModel.updateOne({ _id: id }, updatedData);
+    return this.carModel.findById(id);
   }
 
 
@@ -200,14 +203,16 @@ export class CarService {
         });
       }
       const { images, imagesToDelete, ...rest } = updateCarDto;
-     Object.assign(car, rest);
+      Object.assign(car, rest);
 
-    return await car.save();
-  } catch (err) {
-    console.error(`Error updating car with ID ${id} and images:`, err);
-    throw new InternalServerErrorException('Error updating car with images');
-  }
-}
+      return await car.save();
+    } catch (err) {
+      console.error(`Error updating car with ID ${id} and images:`, err);
+      throw new InternalServerErrorException('Error updating car with images');
+    }
+  } 
+
+
 
   // Delete a car
   async remove(id: string): Promise<any> {

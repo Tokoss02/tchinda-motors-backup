@@ -5489,6 +5489,15 @@ label {
 	position: relative;
 }
 
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .banner-hero.hero-1 .banner-inner span.bg-circle {
 	position: absolute;
 	top: 25%;

@@ -192,7 +192,7 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
             <th>Years</th>
             <th>Car Type</th>
             <th>Conditions</th>
-            <th>Prices (AED)</th>
+            <th>Prices ($)</th>
             <th className="text-end">Actions</th>
           </tr>
         </thead>
@@ -224,7 +224,7 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
                 <td>{car.year}</td>
                 <td>{car.carType}</td>
                 <td>{car.condition}</td>
-                <td>AED {car.price}</td>
+                <td>$ {car.price}</td>
                 <td className="text-end">
 
                   <button className="btn btn-sm rounded-3  me-2" style={{ backgroundColor: '#d8d8d8' }} onClick={() => onEdit(car)}>

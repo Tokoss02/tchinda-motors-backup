@@ -4,7 +4,6 @@ import React from 'react';
 import { Car } from '@/types/carvalue';
 import Link from "next/link";
 import { useState, useEffect } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
@@ -12,11 +11,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import "yet-another-react-lightbox/styles.css";
 import CarSpecs from '@/components/CarSpecs';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import axios from 'axios';
 import InquiryForm from '@/components/InquiryForm';
 import { useParams } from 'next/navigation';
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
+import 'yet-another-react-lightbox/styles.css';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import CarSpecsSection from './CarSpecsSection';
 
 
 type CarsDetailsProps = {
@@ -118,22 +118,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                 </div>
               </div>
             </div>
-            <div className="tour-metas">
-              <div className="tour-meta-right">
-                <Link className="btn btn-share" href="#">
-                  <svg width={16} height={18} viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 11.5332C12.012 11.5332 11.1413 12.0193 10.5944 12.7584L5.86633 10.3374C5.94483 10.0698 6 9.79249 6 9.49989C6 9.10302 5.91863 8.72572 5.77807 8.37869L10.7262 5.40109C11.2769 6.04735 12.0863 6.46655 13 6.46655C14.6543 6.46655 16 5.12085 16 3.46655C16 1.81225 14.6543 0.466553 13 0.466553C11.3457 0.466553 10 1.81225 10 3.46655C10 3.84779 10.0785 4.20942 10.2087 4.54515L5.24583 7.53149C4.69563 6.90442 3.8979 6.49989 3 6.49989C1.3457 6.49989 0 7.84559 0 9.49989C0 11.1542 1.3457 12.4999 3 12.4999C4.00433 12.4999 4.8897 11.9996 5.4345 11.2397L10.147 13.6529C10.0602 13.9331 10 14.2249 10 14.5332C10 16.1875 11.3457 17.5332 13 17.5332C14.6543 17.5332 16 16.1875 16 14.5332C16 12.8789 14.6543 11.5332 13 11.5332Z" fill="currentColor" />
-                  </svg>
-                  Share
-                </Link>
-                <Link className="btn btn-wishlish" href="#">
-                  <svg width={20} height={18} viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M2.2222 2.3638C4.34203 0.243977 7.65342 0.0419426 10.0004 1.7577C12.3473 0.0419426 15.6587 0.243977 17.7786 2.3638C20.1217 4.70695 20.1217 8.50594 17.7786 10.8491L12.1217 16.5059C10.9501 17.6775 9.05063 17.6775 7.87906 16.5059L2.2222 10.8491C-0.120943 8.50594 -0.120943 4.70695 2.2222 2.3638Z" fill="currentColor" />
-                  </svg>
-                  Wishlish
-                </Link>
-              </div>
-            </div>
+            
           </div>
           <div className="row">
             {/* Left Column - Main Content */}
@@ -150,33 +135,34 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                     <img
                       src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${car.images[mainImageIndex]}`}
                       alt={`${car.brand} ${car.modelCar}`}
-                      className="main-image"
+                      className="main-image rounded"
                       style={{ maxHeight: '100%', objectFit: 'cover', width: '100%' }}
+                      onClick={() => setIsOpen(true)}
                     />
-                    <button onClick={handlePrev} className="btn btn-light position-absolute top-50 start-0 translate-middle-y z-1">
-                      <i className="bi bi-arrow-left"></i>
-                    </button>
+                    <button
+                      onClick={handlePrev}
+                      aria-label="Previous"
 
-                    <button onClick={handleNext} 
-                    className="btn btn-light position-absolute top-50 end-0 translate-middle-y z-1 next"
-                    
+                      className="btn-light rounded-5 shadow position-absolute top-50 start-0 translate-middle-y z-3 d-flex align-items-center justify-content-center"
+                      style={{ width: '60px', height: '60px', opacity: 0.8 }}
                     >
-                      <i className="bi bi-arrow-right"></i>
+                      <i className="bi bi-arrow-left fs-5"></i>
                     </button>
 
+                    <button
+                      onClick={handleNext}
+                      aria-label="Next"
+                      className="btn-light rounded-5 shadow position-absolute top-50 end-0 translate-middle-y z-3 d-flex align-items-center justify-content-center"
+                      style={{ width: '60px', height: '60px', opacity: 0.8 }}
+                    >
+                      <i className="bi bi-arrow-right fs-5"></i>
+                    </button>
 
                     {/* Action Buttons */}
                     <div className="box-button-abs">
-                      <button
-                        className="btn btn-warning d-flex align-items-center"
-                        onClick={() => setIsOpen(true)}
-                      >
-                        <i className="bi bi-grid-3x3-gap-fill me-2"></i>
-                        See All Photos
-                      </button>
 
                       {car.videoUrl && (
-                        <button onClick={() => setShowVideo(true)} className="btn btn-light border">
+                        <button onClick={() => setShowVideo(true)} className="btn btn-light border rounded">
                           <i className="bi bi-play-circle me-2"></i> Watch Video
                         </button>
                       )}
@@ -208,7 +194,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
 
 
 
-                <div className="box-feature-car">
+                <div>
                   <div className="list-feature-car align-items-start">
                     <div className="item-feature-car w-md-25">
                       <div className="item-feature-car-inner">
@@ -283,6 +269,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
 
                     {/* Car Specs section (with PDF/image download) */}
                     <CarSpecs carId={car._id} />
+                    <CarSpecsSection specs={car} />
 
                   </div>
                 </div>
@@ -300,16 +287,34 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
         </div>
       </section>
 
+      
+
       {/* Modal */}
+
       <Lightbox
         open={isOpen}
         close={() => setIsOpen(false)}
         slides={car.images.map((img) => ({
-          src: `http://localhost:5000${img}`,
+          src: `${process.env.NEXT_PUBLIC_API_BASE_URL}${img}`,
+          alt: `Thumbnail image of ${car.name}`
         }))}
         index={photoIndex}
         on={{ view: ({ index }) => setPhotoIndex(index) }}
+       
+       plugins={[Thumbnails]}
+        thumbnails={{
+          position: 'bottom',
+          width: 120,
+          height: 90,
+          padding: 0.25,
+          gap: 8,
+          showToggle: true,
+        }}
       />
+
+
+
+      {/* Video Modal */}
 
       {showVideo && (
         <div className="modal fade show d-block" tabIndex={-1} role="dialog" style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>

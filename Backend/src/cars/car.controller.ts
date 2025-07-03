@@ -1,5 +1,5 @@
 // src/cars/car.controller.ts
-import { Body, Controller, Get, Post, Param, Delete, Query, UseGuards, Patch, UseInterceptors, UploadedFiles, BadRequestException, } from '@nestjs/common';
+import { Body, Controller, Get,Put, Post, Param, Delete, Query, UseGuards, Patch, UseInterceptors, UploadedFiles, BadRequestException, } from '@nestjs/common';
 import { CarService } from './car.service';
 import { Car } from './schemas/car.schema';
 import { CreateCarDto } from './dto/create-car.dto';
@@ -8,7 +8,7 @@ import { Roles } from '../auth/roles.decorator';
 import { RolesGuard } from '../auth/roles.guard';
 import { UpdateCarDto } from './dto/update-car.dto';
 import { multerConfig } from 'src/Helpers/multer.config';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Req } from '@nestjs/common';
 import path from 'path';
 import { ContactDto } from 'src/contact/ContactDto';
@@ -108,56 +108,29 @@ export class CarController {
   @Post()
   // @UseGuards(JwtAuthGuard, RolesGuard)
   // @Roles('admin')
-  @UseInterceptors(FilesInterceptor('images', 20, multerConfig))
+  @UseInterceptors(FilesInterceptor('images', 30, multerConfig))
   async create(
-    @UploadedFiles() files: Express.Multer.File[], // Get the uploaded file
-    @Body() createCarDto: CreateCarDto,  // Get the DTO data
+  @UploadedFiles() files: Express.Multer.File[],
+  @Body() body: any, // raw body, will contain `car` as string
+): Promise<Car> {
+  console.log('Received files:', files);
+  const images = files?.map((file) => `/uploads/cars/${file.filename.replace(/\\/g, '/')}`);
 
-  ): Promise<Car> {
-    console.log('Received files:', files);
-    console.log('Saving to:', path.join(process.cwd(), 'uploads', 'cars'));
-    const images = files?.map((files) => `/uploads/cars/${files.filename.replace(/\\/g, '/')}`)
-    console.log('Mapped image URLs:', images);
+  // ✅ Parse `car` field from form-data string
+  const createCarDto: CreateCarDto = JSON.parse(body.car);
+   // ✅ Remove any empty or invalid _id field
+  if ('_id' in createCarDto) {
+    delete createCarDto._id;
+  }
+  console.log('Parsed DTO:', createCarDto);
+    
     return this.carService.create(createCarDto, images); // Pass strings to service
   }
 
 
  
-  // @UseGuards(JwtAuthGuard, RolesGuard)
-  // @Roles('admin')
-  @Patch(':id')
-@UseInterceptors(FilesInterceptor('images', 20, multerConfig))
-async updateCar(
-  @Param('id') id: string,
-  @Body() updateCarDto: UpdateCarDto,
-  @UploadedFiles() files: Express.Multer.File[],
-): Promise<Car> {
-  console.log('Files received:', files);
 
-  // Handle new images
-  const newImages = files?.map(file =>
-    `/uploads/cars/${file.filename.replace(/\\/g, '/')}`
-  ) || [];
 
-  // Handle existing images from the form
-  let existingImages: string[] = [];
-
-  if (typeof updateCarDto.existingImages === 'string') {
-    try {
-      existingImages = JSON.parse(updateCarDto.existingImages);
-    } catch (err) {
-      existingImages = [updateCarDto.existingImages];
-    }
-  } else if (Array.isArray(updateCarDto.existingImages)) {
-    existingImages = updateCarDto.existingImages;
-  }
-
-  // Combine both
-  const allImages = [...existingImages, ...newImages];
-
-  // Pass all combined images to the service
-  return this.carService.updateWithImages(id, updateCarDto, allImages);
-}
 
 
 @Post('contact')
@@ -214,6 +187,18 @@ async handleContact(@Body() body: any) {
   async findOne(@Param('id') id: string): Promise<Car> {
     return this.carService.findById(id);
   }
+
+
+  @Put(':id')
+@UseInterceptors(FileFieldsInterceptor([{ name: 'images', maxCount: 10 }]))
+async updateCar(
+  @Param('id') id: string,
+  @UploadedFiles() files: { images?: Express.Multer.File[] },
+  @Body('car') carJson: string,
+) {
+  const carData = JSON.parse(carJson);
+  return this.carService.update(id, carData, files.images || []);
+}
 
 
 }

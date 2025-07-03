@@ -43,15 +43,15 @@ export default function Categories2() {
 	const normalize = (name: string) => name.toLowerCase()
 
 	return (
-		<section className="section-box background-body py-96 border-bottom">
+		<section className="section-box background-body border-bottom">
 			<div className="container">
 				<div className="row align-items-end mb-40">
 					<div className="col-md-8">
-						<h3 className="heading-4 mb-0 neutral-1000">Browse by Type</h3>
+						<h3 className="heading-5 py-4 mb-0 neutral-1000">Browse by Type</h3>
 					</div>
 				</div>
 
-				<div className="row">
+				<div className="row justify-content-center">
 					{carTypes.length === 0 ? (
 						<div className="col-12 text-center text-danger">No car types found.</div>
 					) : (

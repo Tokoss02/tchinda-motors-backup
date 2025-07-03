@@ -47,12 +47,14 @@ export const addCar = async (carData: FormData) => {
 // ✏️ Update a car
 export const updateCar = async (_id: string, carData: FormData): Promise<Car> => {
   const token = getAuthToken();
+
   const response = await axios.put<Car>(`${BASE_URL}/cars/${_id}`, carData, {
     headers: {
-      //'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
     },
   });
+
   return response.data;
 };
 

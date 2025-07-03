@@ -2,7 +2,7 @@
 
 
 import { useState, useEffect, React } from 'react';
-import { CAR_FEATURES, COMFORT_CONVENIENCE_FEATURES, EXTERIOR_FEATURES, INTERIOR_FEATURES, SAFETY_FEATURES } from './features';
+import { COMFORT_CONVENIENCE_FEATURES, EXTERIOR_FEATURES, INTERIOR_FEATURES, OTHERS_FEATURES, SAFETY_FEATURES } from './features';
 
 interface CarFeaturesProps {
 
@@ -41,7 +41,7 @@ export default function CarFeatures({ onChange, defaultSelected = [] }: CarFeatu
     { title: 'Exterior', features: EXTERIOR_FEATURES },
     { title: 'Safety', features: SAFETY_FEATURES },
     { title: 'Comfort & Convenience', features: COMFORT_CONVENIENCE_FEATURES },
-    { title: 'Other Features', features: CAR_FEATURES },
+    { title: 'Other Features', features: OTHERS_FEATURES },
   ];
 
   return (

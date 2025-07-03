@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { saveAuthToken } from "@/util/auth";
 
 export default function Login() {
 	const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ export default function Login() {
 				// Show 2FA input UI
 			  } else {
 				// Save token and redirect to dashboard
-				localStorage.setItem("access_token", data.access_token);
+				saveAuthToken(data.token);
 				router.push("/dashboard");
 			  }
 		} catch (err) {

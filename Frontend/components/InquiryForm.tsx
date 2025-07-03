@@ -120,7 +120,7 @@ export default function InquiryForm({ car }: InquiryFormProps) {
               className="form-control mb-3"
             />
 
-            <button type="submit" className="btn btn-primary w-100 mt-3" disabled={loading}>
+            <button type="submit" className="btn btn-primary w-100 mt-3 rounded" disabled={loading}>
               {loading ? 'Submitting...' : 'Inquire Now'}
             </button>
 

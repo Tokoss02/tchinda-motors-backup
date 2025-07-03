@@ -42,7 +42,7 @@ export class InquiryService {
             car.trimLevel ?? 'base',
             `${car.engine ?? '0'}l`,
             String(car.year ?? '0000'),
-            car.color ?? 'white',
+            car.exteriorColor ?? 'white',
             (car._id as any)?.toString().slice(-6) ?? 'xxxxxx',
           );
 

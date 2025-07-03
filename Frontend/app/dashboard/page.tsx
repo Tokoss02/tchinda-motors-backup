@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BarChart3, CarFront, Car } from 'lucide-react';
+import { clearAuthToken, getAuthToken } from '@/util/auth';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function DashboardPage() {
   const [stats, setStats] = useState({ total: 0, new: 0, used: 0 });
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('access_token');
+    const storedToken = getAuthToken();
     if (!storedToken) {
       router.push('/2fa');
     } else {
@@ -25,11 +26,6 @@ export default function DashboardPage() {
         .catch(err => console.error(err));
     }
   }, [router]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('access_token');
-    router.push('/2fa');
-  };
 
   const StatCard = ({
     icon: Icon,

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Car, Home, Settings, Users, LogOut, ListPlus, PlusCircle } from 'lucide-react';
+import { clearAuthToken } from '@/util/auth';
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -12,7 +13,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const handleLogout = () => {
-    localStorage.removeItem('access_token');
+    clearAuthToken();
     router.push('/2fa');
   };
 

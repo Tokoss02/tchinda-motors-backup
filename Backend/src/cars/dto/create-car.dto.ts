@@ -7,10 +7,40 @@ import {
   IsOptional,
   IsArray,
   IsIn,
+  ValidateNested,
+  IsObject,
 } from 'class-validator';
 import { Type, Transform } from 'class-transformer';
 import { slugify } from 'transliteration';
-import { COMFORT_CONVENIENCE_FEATURES, INTERIOR_FEATURES, EXTERIOR_FEATURES, SAFETY_FEATURES, CAR_FEATURES } from 'type/features';
+
+
+// ✅ Add a class to validate nested features object
+class FeatureGroup {
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  interior?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  exterior?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  safety?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  comfortConvenience?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  otherFeatures?: string[];
+}
 
 
 export class CreateCarDto {
@@ -47,7 +77,7 @@ export class CreateCarDto {
   @IsString({ each: true })
   images?: string[];
 
-    @IsOptional()
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   existingImages?: string[];
@@ -62,7 +92,7 @@ export class CreateCarDto {
   @IsNumber({}, { message: 'Engine must be a number' })
   @Min(0.05, { message: 'Engine cannot be less than 0.05 Liters' })
   @Max(8.4, { message: 'Engine cannot be more than 8.4 Liters' })
-  engine?: number;
+  engine!: number;
 
   @Type(() => Number)
   @IsInt({ message: 'Year must be an integer' })
@@ -96,7 +126,7 @@ export class CreateCarDto {
 
   @IsOptional()
   @IsString({ message: 'TrimLevel must be a string' })
-  trimLevel!: string;
+  trimLevel?: string;
 
   // Performance
   @IsOptional()
@@ -167,8 +197,12 @@ export class CreateCarDto {
 
   // Options
   @IsOptional()
-  @IsString({ message: 'Color must be a string' })
-  color!: string;
+  @IsString({ message: 'Exterior Color must be a string' })
+  exteriorColor!: string;
+
+  @IsOptional()
+  @IsString({ message: 'Interior Color must be a string' })
+  interiorColor!: string;
 
   @IsOptional()
   @IsString({ message: 'Steering must be a string' })
@@ -179,31 +213,12 @@ export class CreateCarDto {
   @IsString({ message: 'Upholstery must be a string' })
   @IsIn(['Fabric', 'Leather'], { message: 'Upholstery must be either Fabric or Leather' })
   upholstery?: string;
+  
 
   // Features
-  @IsOptional()
-  @IsIn(COMFORT_CONVENIENCE_FEATURES, { each: true })
-  comfortConvenience!: string[];
-
-  @IsOptional()
-  @IsIn(INTERIOR_FEATURES, { each: true })
-  interior!: string[];
-
-  @IsOptional()
-  @IsIn(EXTERIOR_FEATURES, { each: true })
-  exterior!: string[];
-
-  @IsOptional()
-  @IsIn(SAFETY_FEATURES, { each: true })
-  safety!: string[];
-  
-  @IsOptional()
-  @IsIn(CAR_FEATURES, { each: true })
-  otherFeatures!: string[];
 
 
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  features?: string[];
+  @ValidateNested()
+  @Type(() => FeatureGroup)
+  features?: FeatureGroup;
 }

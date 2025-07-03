@@ -11,7 +11,7 @@ export interface Car extends Document {
   mileage?: number;
   seats?: number;
   engine?: number;
-  color?: string;
+  exteriorColor?: string;
   condition: 'New' | 'Used';
   carType: 'SUV' | 'Crossover' | 'Sedan' | 'Pickup' | 'Hatchback' | 'Coupe' | 'Truck' | 'Minivan' | 'Bus' | 'Van' | 'Luxury' | 'Jeep';
   fuelType: 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid';
@@ -45,7 +45,14 @@ export interface Car extends Document {
   steering?: 'Left Hand Drive (LHD)' | 'Right Hand Drive (RHD)';
   doors?: number;
   upholstery?: 'Fabric' | 'Leather';
-  //uniqueCarSlug: string;
+    // ✅ Updated
+  features: {
+    interior?: string[];
+    exterior?: string[];
+    safety?: string[];
+    comfortConvenience?: string[];
+    otherFeatures?: string[];
+  };
 }
 
 export const CarSchema = new Schema<Car>(
@@ -56,28 +63,31 @@ export const CarSchema = new Schema<Car>(
     modelCar: { type: String, required: true },
     engine: { type: Number, required: false },
     year: { type: Number },
-    color: { type: String },
-    condition: { type: String, required: true, enum: ['New', 'Used'] },
-    price: { type: Number, required: true },
+    exteriorColor: { type: String },
+    condition: { type: String, required: false, enum: ['New', 'Used'] },
+    price: { type: Number, required: false },
     images: { type: [String], required: true },
     mileage: { type: Number },
     seats: { type: Number },
-    fuelType: { type: String, required: true, enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'] },
-    transmission: { type: String, required: true, enum: ['Manual', 'Automatic', 'CVT'] },
+    fuelType: { type: String, required: false, enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'] },
+    transmission: { type: String, required: false, enum: ['Manual', 'Automatic', 'CVT'] },
     carType: {
       type: String,
-      required: true,
+      required: false,
       enum: ['SUV', 'Crossover', 'Sedan', 'Pickup', 'Coupe', 'Hatchback', 'Truck', 'Minivan', 'Bus', 'Van', 'Luxury', 'Jeep'],
     },
     DriveType: { type: String, required: false, enum: ['FWD', 'RWD', '4WD', 'AWD'] },
     videoUrl: { type: String },
 
     // Feature categories
-    interior: { type: [String], default: [] },
-    exterior: { type: [String], default: [] },
-    safety: { type: [String], default: [] },
-    comfortConvenience: { type: [String], default: [] },
-    otherFeatures: { type: [String], default: [] },
+    features: {
+      interior: { type: [String], default: [] },
+      exterior: { type: [String], default: [] },
+      safety: { type: [String], default: [] },
+      comfortConvenience: { type: [String], default: [] },
+      otherFeatures: { type: [String], default: [] },
+    },
+    
 
     // Slugs
     carSlug: { type: String },
@@ -85,7 +95,7 @@ export const CarSchema = new Schema<Car>(
     modelSlug: { type: String },
 
     // Specs
-    trimLevel: { type: String, required: true },
+    trimLevel: { type: String, required: false },
     interiorColor: { type: String },
     horsepower: { type: Number },
     torque: { type: Number },

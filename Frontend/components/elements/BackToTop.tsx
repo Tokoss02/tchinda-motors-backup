@@ -30,9 +30,14 @@ export default function BackToTop() {
 					right: '20px',
 					zIndex: 2147483647,
 					cursor: 'pointer',
+					backgroundColor: '#001721',
+					border: 'none',
+					padding: '10px',
+					borderRadius: '50%',
 				}}
+				aria-label="Scroll to top"
 			>
-				<svg width={20} height={25} viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg width={30} height={30} viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M10.5998 24.2694C10.7522 24.1169 10.8485 23.9083 10.8485 23.6676L10.8503 1.20328C10.8504 0.737952 10.4653 0.35288 9.99997 0.352917C9.53464 0.352955 9.14951 0.738087 9.14947 1.20342L9.14766 23.6678C9.14762 24.1331 9.53269 24.5182 9.99802 24.5181C10.2387 24.5181 10.4473 24.4218 10.5998 24.2694Z"
 						fill="#fff"

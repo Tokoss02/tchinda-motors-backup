@@ -30,8 +30,7 @@ export interface Car {
   | 'Jeep';
   amenities?: string;
   description?: string;
-  color?: string;
-  features?: string[];
+  exteriorColor?: string;
   engine: number;
   newImages?: File[]; // for new files to upload
   videoUrl?: string;
@@ -43,11 +42,6 @@ export interface Car {
   numberOfDoors: number;
   wheelSize: number;
   exportStatus: string;
-  interior?: string[];
-  exterior?: string[];
-  safety?: string[];
-  otherFeatures: string[];
-  comfortConvenience?: string[];
   horsepower: number;
   torque: number;
   length: number;
@@ -60,6 +54,13 @@ export interface Car {
   doors: number;
   upholstery: 'Fabric' | 'Leather';
 
+  features: {
+    interior: string[];
+    exterior: string[];
+    safety: string[];
+    comfortConvenience: string[];
+    otherFeatures: string[];
+  };
 
 
 }
@@ -90,10 +91,9 @@ export const emptyCar: Car = {
   price: 0,
   carType: 'SUV',
   description: '',
-  color: '',
+  exteriorColor: '',
   engine: 0,
   newImages: [],
-  features: [],
   trimLevel: '',
   horsepower: 0,
   torque: 0,
@@ -106,11 +106,13 @@ export const emptyCar: Car = {
   steering: 'Left Hand Drive (LHD)',
   doors: 0,
   upholstery: 'Fabric',
-  interior: [],
-  exterior: [],
-  safety: [],
-  comfortConvenience: [],
-  otherFeatures: [],
+  features: {
+    interior: [],
+    exterior: [],
+    safety: [],
+    comfortConvenience: [],
+    otherFeatures: [],
+  },
 };
 
 export interface Filter {

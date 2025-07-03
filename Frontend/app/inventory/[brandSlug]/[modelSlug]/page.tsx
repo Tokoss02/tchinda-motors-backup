@@ -22,10 +22,10 @@ export default async function ModelPage({ params }: { params: { brandSlug: strin
             <div className="container">
             <Breadcrumbs />
             <section className="container py-4">
-				<h2>
+				<h4>
 					{formatSlug(params.brandSlug)} / {formatSlug(params.modelSlug)}
-				</h2>
-				<ModelCarFilterClient cars={cars} />
+				</h4>
+				<ModelCarFilterClient cars={cars} /> 
 			</section>
             </div>
         </Layout >

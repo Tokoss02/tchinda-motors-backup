@@ -16,7 +16,7 @@ export default async function BrandPage({ params }: { params: { brandSlug: strin
             <div className="container">
             <Breadcrumbs />
             <section className="container py-4">
-				<h2>{params.brandSlug.charAt(0).toUpperCase() + params.brandSlug.slice(1)} Brand</h2>
+				<h4>{params.brandSlug.charAt(0).toUpperCase() + params.brandSlug.slice(1)} Brand</h4>
 				<BrandCarFilterClient cars={cars} />
 			</section>
             </div>
