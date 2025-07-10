@@ -9,7 +9,7 @@ import { Connection } from 'mongoose';
 export class AppService {
   private readonly startTime = Date.now();
 
-  constructor(@InjectConnection() private readonly connection: Connection) {}
+  constructor(@InjectConnection() private readonly connection: Connection) { }
 
   getStatus(): Record<string, any> {
     const totalMem = os.totalmem();
@@ -50,15 +50,14 @@ export class AppService {
   private getDiskSpaceInfo(): Record<string, any> {
     try {
       const stat = fs.statSync('/');
-      const { size, blocks, blksize } = stat as any;
+      const { blocks, blksize } = stat as any;
+      if (!blocks || !blksize) throw new Error('Bad stat data');
       return {
         total: `${(blocks * blksize / 1024 / 1024).toFixed(2)} MB`,
         blockSize: blksize,
       };
     } catch (err) {
-      return {
-        error: 'Unable to retrieve disk info',
-      };
+      return { error: 'Disk info not available' };
     }
   }
 }

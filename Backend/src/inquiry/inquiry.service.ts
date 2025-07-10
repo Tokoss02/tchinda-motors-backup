@@ -47,7 +47,7 @@ export class InquiryService {
           );
 
           // ✅ Generate full URL using frontend base URL and slugs
-          const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+          const frontendUrl = process.env.FRONTEND_URL || 'https://tokossmotors.com';
           fullCarUrl = `${frontendUrl}/cars-details/${inquiryDto.brandSlug}/${inquiryDto.modelSlug}/${carSlug}`;
           //carSlug = fullCarUrl; // use the full generated one
 

@@ -10,6 +10,7 @@ export default function TwoFAPage() {
   const [result, setResult] = useState('');
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const router = useRouter();
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const isFormValid = digits.every((d) => d !== '') && email.trim() !== '';
 
@@ -63,7 +64,7 @@ export default function TwoFAPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/auth/2fa/verify', {
+      const response = await fetch(`${API_BASE_URL}/auth/2fa/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, token }),

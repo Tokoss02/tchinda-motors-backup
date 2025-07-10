@@ -85,7 +85,7 @@ export const generateSpecsOnlyPDF = (specs: any) => {
     }
 
     addSectionTitle('Exterior');
-    addTableRow('Exterior Color', specs.color);
+    addTableRow('Exterior Color', specs.exteriorColor);
     addTableRow('Number of Doors', specs.numberOfDoors);
     addTableRow('Car Type', specs.carType);
     if (specs.features?.exterior?.length) {

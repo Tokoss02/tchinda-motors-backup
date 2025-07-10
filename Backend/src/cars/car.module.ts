@@ -5,11 +5,13 @@ import { CarController } from './car.controller';
 import { CarService } from './car.service';
 import { CarSchema } from './schemas/car.schema';
 import { MailService } from 'src/email/mail.service';
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Car', schema: CarSchema }]),
+    CloudinaryModule,
   ],
   controllers: [CarController],
   providers: [CarService, MailService],

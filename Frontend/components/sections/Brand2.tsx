@@ -5,6 +5,8 @@ import Marquee from 'react-fast-marquee';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 interface BrandCount {
   brand: string;
   count: number;
@@ -14,7 +16,7 @@ export default function Brand2() {
   const [brands, setBrands] = useState<BrandCount[]>([]);
 
   useEffect(() => {
-    axios.get<BrandCount[]>("http://localhost:5000/cars/count-by-brand")
+    axios.get<BrandCount[]>(`${API_BASE_URL}/cars/count-by-brand`)
       .then((res) => {
         setBrands(res.data);
       })

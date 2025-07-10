@@ -34,7 +34,7 @@ export async function generateImagesOnlyPDF(specs: any) {
     y += 8;
 
     for (let i = 0; i < specs.images.length; i++) {
-        const imgUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}${specs.images[i]}`;
+        const imgUrl = `https://tokossmotors.com${specs.images[i]}`;
         const image = await loadImageAsBase64(imgUrl);
 
         if (y + 130 > doc.internal.pageSize.height) {

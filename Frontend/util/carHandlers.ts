@@ -1,6 +1,6 @@
 import { Car } from '@/types/carvalue';
 
-const API_BASE_URL = 'http://localhost:5000/cars';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // ✨ Normalize car data before sending (used for updates only)
 function sanitizeCarData(car: Car): Car {
@@ -29,6 +29,7 @@ export async function addCar(car: Car, token: string): Promise<Car | null> {
     formData.append('mileage', car.mileage.toString());
     formData.append('seats', car.seats.toString());
     formData.append('DriveType', car.DriveType);
+    
 
      // ✅ Append only File objects
      
@@ -38,7 +39,7 @@ export async function addCar(car: Car, token: string): Promise<Car | null> {
       });
     }
 
-    const res = await fetch(API_BASE_URL, {
+    const res = await fetch(`${API_BASE_URL}/cars`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -101,7 +102,7 @@ if (car.newImages && Array.isArray(car.newImages)) {
   });
 }
 
-    const res = await fetch(`${API_BASE_URL}/${car._id}`, {
+    const res = await fetch(`${API_BASE_URL}/cars/${car._id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -124,7 +125,7 @@ if (car.newImages && Array.isArray(car.newImages)) {
 // ❌ Delete a car
 export async function deleteCar(id: string, token: string): Promise<boolean> {
   try {
-    const res = await fetch(`${API_BASE_URL}/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/cars/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,

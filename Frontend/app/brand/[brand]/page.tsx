@@ -15,7 +15,7 @@ const BrandPage = () => {
     const fetchCarsByBrand = async () => {
       try {
         const response = await axios.get<Car[]>(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/cars?brand=${brand}`
+          `https://tokossmotors.com/cars?brand=${brand}`
         );
         setCars(response.data);
       } catch (error) {

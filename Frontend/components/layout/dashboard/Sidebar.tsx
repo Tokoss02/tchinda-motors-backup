@@ -27,7 +27,7 @@ export function Sidebar() {
         { label: 'Cars List', href: '/dashboard/cars/car-list', icon: <ListPlus size={18} /> }, 
       ],
     },
-    { label: 'Users', href: '/dashboard/users', icon: <Users size={18} /> },
+    //{ label: 'Users', href: '/dashboard/users', icon: <Users size={18} /> },
     { label: 'Settings', href: '/dashboard/settings', icon: <Settings size={18} /> },
   ];
 

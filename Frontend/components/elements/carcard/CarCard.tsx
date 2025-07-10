@@ -11,7 +11,7 @@ interface CarCardProps {
 
 }
 
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function CarCard({ car }: CarCardProps) {
 
   // Use car.images if available, fallback to imageUrls (during upload preview)
@@ -25,9 +25,9 @@ export default function CarCard({ car }: CarCardProps) {
   const imageUrl = firstImage
     ? firstImage.startsWith('http') || firstImage.startsWith('/')
       ? firstImage.startsWith('/uploads')
-        ? `http://localhost:5000${firstImage}`
+        ? `${API_BASE_URL}${firstImage}`
         : firstImage
-      : `http://localhost:5000${firstImage}`
+      : `${API_BASE_URL}${firstImage}`
     : '/default-car.jpg';
 
   const detailsUrl = `/cars-details/${car.brandSlug}/${car.modelSlug}/${generateCarSlug(car)}`;

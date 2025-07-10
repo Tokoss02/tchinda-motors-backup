@@ -9,6 +9,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [token, setToken] = useState('');
   const [stats, setStats] = useState({ total: 0, new: 0, used: 0 });
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   useEffect(() => {
     const storedToken = getAuthToken();
@@ -16,7 +17,7 @@ export default function DashboardPage() {
       router.push('/2fa');
     } else {
       setToken(storedToken);
-      fetch('http://localhost:5000/cars/stats', {
+      fetch(`${API_BASE_URL}/cars/stats`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },

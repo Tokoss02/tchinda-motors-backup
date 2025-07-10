@@ -133,6 +133,7 @@ export class CarService {
         (savedCar._id as Types.ObjectId).toString().slice(-6)// last 6 chars of ObjectId
       );
       console.log('✅ Generated Slug:', uniqueCarSlug);
+      console.log('🧪 Final image list to save:', imageUrls);
 
       // Update the carSlug and save again
       savedCar.carSlug = uniqueCarSlug;

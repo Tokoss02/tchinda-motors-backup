@@ -16,7 +16,7 @@ const CarSpecsPDF: React.FC<CarSpecsPDFProps> = ({ carId }) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cars/${carId}`)
+      .get(`https://tokossmotors.com/cars/${carId}`)
       .then((res) => setSpecs(res.data))
       .catch((err) => console.error('Error fetching car specs:', err));
   }, [carId]);

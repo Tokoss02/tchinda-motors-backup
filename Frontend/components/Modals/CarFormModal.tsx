@@ -20,8 +20,10 @@ interface CarFormModalProps {
   selectedCar: Car;
   setSelectedCar: (car: Car) => void;
   onClose?: () => void;
+  onSubmit?: (e: React.FormEvent, images: File[], updatedCar: Car) => void;
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function CarFormModal({ isNew, isModal = true, selectedCar, setSelectedCar, onClose }: CarFormModalProps) {
   const [step, setStep] = useState(1);
   const [car, setCar] = useState<Car>({ ...emptyCar });
@@ -111,7 +113,7 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
     imageFiles.forEach(file => formData.append('images', file));
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cars`, {
+      const res = await fetch(`${API_BASE_URL}/cars`, {
         method: 'POST',
         body: formData,
       });
@@ -143,7 +145,7 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
           ))}
         </ul>
       </div>
-      <ToastContainer />
+      
       <form onSubmit={handleSubmit} onKeyDown={(e) => {
         if (e.key === 'Enter' && step !== 3) {
           e.preventDefault();

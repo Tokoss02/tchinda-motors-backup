@@ -6,6 +6,7 @@ import axios from 'axios'
 
 // Import the car model if needed
 // import { Car } from '@/types/myCarValue' // Adjust path as needed
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 interface CarTypeCount {
 	carType: string
@@ -16,7 +17,7 @@ export default function Categories2() {
 	const [carTypes, setCarTypes] = useState<CarTypeCount[]>([])
 
 	useEffect(() => {
-		axios.get<CarTypeCount[]>("http://localhost:5000/cars/count-by-type")
+		axios.get<CarTypeCount[]>(`${API_BASE_URL}/cars/count-by-type`)
 			.then((res) => {
 				console.log("Fetched Car Types:", res.data)
 				setCarTypes(res.data)

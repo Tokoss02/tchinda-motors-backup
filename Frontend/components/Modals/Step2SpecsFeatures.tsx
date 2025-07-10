@@ -7,7 +7,7 @@ import {
   SAFETY_FEATURES,
   COMFORT_CONVENIENCE_FEATURES,
   OTHERS_FEATURES,
-} from '../../../Backend/type/features';
+} from '../../shared-types/features';
 
 type Step2SpecsFeaturesProps = {
   car: Car;

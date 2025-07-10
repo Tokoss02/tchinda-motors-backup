@@ -54,7 +54,7 @@ export default function Contact() {
 	}
 
 	try {
-		const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cars/contact`, {
+		const response = await axios.post(`https://tokossmotors.com/cars/contact`, {
 			...formData
 		});
 		setSuccess("Your message has been sent successfully.");
@@ -80,7 +80,7 @@ export default function Contact() {
 		}*/
 
 		/*try {
-			const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cars/contact`, {
+			const response = await axios.post(`https://tokossmotors.com/cars/contact`, {
 				...formData,
 				captchaToken
 			});

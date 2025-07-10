@@ -17,7 +17,9 @@ export default function HeroSearch({
 }) {
 	const router = useRouter()
 	const searchParams = useSearchParams()
+	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+	// ✅ Initialize filters state
 	const [filters, setFilters] = useState({
 		brands: [],
 		models: [],
@@ -31,6 +33,15 @@ export default function HeroSearch({
 		fuelType: '',
 		transmission: '',
 	})
+ /*******************************Have to be delete after*****************************************/
+
+	useEffect(() => {
+		fetch(`${API_BASE_URL}/ping`)
+			.then(res => res.json())
+			.then(data => console.log('Ping response:', data))
+			.catch(err => console.error('Ping failed:', err));
+	}, []);
+/*****************************It's for test only********************************************** */
 
 	// ✅ Set default selected filters from URL
 	useEffect(() => {
@@ -43,7 +54,7 @@ export default function HeroSearch({
 
 	// ✅ Fetch available filter options based on condition
 	useEffect(() => {
-		fetch(`http://localhost:5000/cars/filters?condition=${condition}`)
+		fetch(`${API_BASE_URL}/cars/filters?condition=${condition}`)
 			.then(res => res.json())
 			.then(data => setFilters(data))
 	}, [condition])
@@ -92,6 +103,7 @@ export default function HeroSearch({
 						))}
 					</select>
 				</div>
+
 
 				{/* All Models */}
 				<div className="flex-grow-1">

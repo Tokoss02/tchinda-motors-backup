@@ -10,6 +10,7 @@ export default function Login() {
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
+	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -17,7 +18,7 @@ export default function Login() {
 		setLoading(true);
 
 		try {
-			const res = await fetch("http://localhost:5000/auth/login", {
+			const res = await fetch(`${API_BASE_URL}/auth/login`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

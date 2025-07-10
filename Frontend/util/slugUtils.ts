@@ -7,15 +7,15 @@ export function generateCarSlug(car: Car): string {
   const trimLevel = car.trimLevel || 'Unknown';
   const engine = car.engine?.toString() || 'Unknown';
   const year = car.year?.toString() || 'Unknown';
-  const color = car.color || 'Unknown';
+  const exteriorColor = car.exteriorColor || 'Unknown';
   const unique = (car._id as string)?.slice(-6) || 'Unknown';
   // Log if any key info is missing
-  if (!car.year || !car.brand || !car.modelCar || !car.trimLevel || !car.engine || !car.color ) {
-    console.warn('Missing data for slug:', { brand, model, trimLevel, engine, year, color, _id: car._id });
+  if (!car.year || !car.brand || !car.modelCar || !car.trimLevel || !car.engine || !car.exteriorColor ) {
+    console.warn('Missing data for slug:', { brand, model, trimLevel, engine, year, exteriorColor, _id: car._id });
     console.log('Generating slug for car:', car);
   }
 
-  return `${brand} ${model} ${trimLevel} ${engine}l ${year} ${color} ${unique}`
+  return `${brand} ${model} ${trimLevel} ${engine} ${year} ${exteriorColor} ${unique}`
     .toLowerCase()
     .replace(/\s+/g, '-')
     .replace(/[^\w-]+/g, '');

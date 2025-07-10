@@ -14,6 +14,7 @@ import path from 'path';
 import { ContactDto } from 'src/contact/ContactDto';
 import axios from 'axios';
 import { MailService } from 'src/email/mail.service';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 
 
@@ -28,7 +29,8 @@ import { MailService } from 'src/email/mail.service';
 export class CarController {
   constructor(
     private readonly carService: CarService,
-    private readonly mailService: MailService // ✅ inject mailService
+    private readonly mailService: MailService, // ✅ inject mailService
+    private readonly cloudinaryService: CloudinaryService,
   ) {}
   
 
@@ -67,7 +69,6 @@ export class CarController {
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 100
   ): Promise<Car[]> {
-    console.log("VSLL=================== ")
     return this.carService.findAll(page, limit);
   }
 
@@ -111,20 +112,25 @@ export class CarController {
   @UseInterceptors(FilesInterceptor('images', 30, multerConfig))
   async create(
   @UploadedFiles() files: Express.Multer.File[],
-  @Body() body: any, // raw body, will contain `car` as string
+  @Body() body: any,
 ): Promise<Car> {
   console.log('Received files:', files);
-  const images = files?.map((file) => `/uploads/cars/${file.filename.replace(/\\/g, '/')}`);
+  //const images = files?.map((file) => `/uploads/cars/${file.filename.replace(/\\/g, '/')}`);
 
-  // ✅ Parse `car` field from form-data string
   const createCarDto: CreateCarDto = JSON.parse(body.car);
-   // ✅ Remove any empty or invalid _id field
-  if ('_id' in createCarDto) {
-    delete createCarDto._id;
-  }
+  if ('_id' in createCarDto) delete createCarDto._id;
+
+  const imageUrls = await Promise.all(
+    files.map((file) => this.cloudinaryService.uploadImage(file))
+  );
+const cleanedImageUrls = imageUrls.map(url =>
+  url.trim().replace(/[);]+$/g, '') // Remove trailing ')' or ';'
+);
+  createCarDto.images=imageUrls;
   console.log('Parsed DTO:', createCarDto);
+  console.log('🔁 Final DTO passed to service:', createCarDto);
     
-    return this.carService.create(createCarDto, images); // Pass strings to service
+    return this.carService.create(createCarDto, cleanedImageUrls);
   }
 
 

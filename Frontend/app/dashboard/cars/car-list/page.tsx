@@ -19,6 +19,7 @@ export default function CarsPage() {
   const [showModal, setShowModal] = useState(false); // Modal visibilityded
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [isNew, setIsNew] = useState(false); // Flag to distinguish Add vs Edit
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
 
@@ -32,7 +33,7 @@ export default function CarsPage() {
     setToken(token);
 
     // Fetch cars from backend
-    fetch('http://localhost:5000/cars', {
+    fetch(`${API_BASE_URL}/cars`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

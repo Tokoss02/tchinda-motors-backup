@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Car } from '@/types/carvalue';
 
 export default function BookCarPage() {
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { id } = useParams();
   const [car, setCar] = useState<Car | null>(null);
   const [form, setForm] = useState({
@@ -16,10 +17,12 @@ export default function BookCarPage() {
     message: '',
   });
 
+  
+
   useEffect(() => {
     async function fetchCar() {
       try {
-        const res = await fetch(`http://localhost:5000/cars/${id}`);
+        const res = await fetch(`${API_BASE_URL}/cars/${id}`);
         const data = await res.json();
         setCar(data);
       } catch (err) {
@@ -47,9 +50,10 @@ export default function BookCarPage() {
   const imageUrl =
     typeof car.images?.[0] === 'string'
       ? car.images[0].startsWith('/')
-        ? `http://localhost:5000${car.images[0]}`
+        ? `${API_BASE_URL}${car.images[0]}`
         : car.images[0]
       : '/default-car.jpg';
+      
 
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-10">

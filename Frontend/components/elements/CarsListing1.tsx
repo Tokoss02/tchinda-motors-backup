@@ -9,11 +9,11 @@ export default function CarsListing1() {
   const [recentCars, setRecentCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState(true);
   const { isLoading, error, } = useCarActions();
-
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
     const fetchRecentCars = async () => {
       try {
-        const res = await fetch('http://localhost:5000/cars');
+        const res = await fetch(`${API_BASE_URL}/cars`);
         const data = await res.json();
         setRecentCars(data);
         setLoading(false);
@@ -40,13 +40,13 @@ export default function CarsListing1() {
         {isLoading ? (
           <p>Loading cars...</p>
         ) : (
-        <div className="row">
-          {recentCars.slice(0, 8).map((car) => (
-            <div key={car._id} className="col-6 col-md-4 col-lg-3">
-              <CarCard car={car} />
-            </div>
-          ))}
-        </div>
+          <div className="row">
+            {recentCars.slice(0, 8).map((car) => (
+              <div key={car._id} className="col-6 col-md-4 col-lg-3">
+                <CarCard car={car} />
+              </div>
+            ))}
+          </div>
         )}
 
         <div className="d-flex justify-content-center mt-4">

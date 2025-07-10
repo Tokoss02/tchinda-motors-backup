@@ -17,6 +17,7 @@ import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import CarSpecsSection from './CarSpecsSection';
+import { generateCarJsonLd } from '@/util/generateCarJsonLd';
 
 
 type CarsDetailsProps = {
@@ -70,9 +71,17 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
   const slides = images.map((img) => ({ src: img }));
   const params = useParams();
   const carSlug = params?.carSlug as string;
+  const jsonLd = generateCarJsonLd(car);
   return (
 
     <div className="container">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+
       {/* Breadcrumb */}
       <section className="box-section box-breadcrumb background-body">
         <nav aria-label="breadcrumbs">
@@ -133,7 +142,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                   <div className="position-relative mb-3">
 
                     <img
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${car.images[mainImageIndex]}`}
+                      src={`https://tokossmotors.com${car.images[mainImageIndex]}`}
                       alt={`${car.brand} ${car.modelCar}`}
                       className="main-image rounded"
                       style={{ maxHeight: '100%', objectFit: 'cover', width: '100%' }}
@@ -175,7 +184,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                     {car.images.map((img, index) => (
                       <img
                         key={index}
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${img}`}
+                        src={`https://tokossmotors.com${img}`}
                         alt={`Thumbnail image of ${car.name}`}
                         className={`rounded border ${index === mainImageIndex ? 'border-primary' : ''}`}
                         style={{
@@ -295,7 +304,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
         open={isOpen}
         close={() => setIsOpen(false)}
         slides={car.images.map((img) => ({
-          src: `${process.env.NEXT_PUBLIC_API_BASE_URL}${img}`,
+          src: `https://tokossmotors.com${img}`,
           alt: `Thumbnail image of ${car.name}`
         }))}
         index={photoIndex}

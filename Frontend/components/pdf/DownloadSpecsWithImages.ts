@@ -102,7 +102,7 @@ export async function generateSpecsWithImagesPDF(specs: any) {
 
     // 3. Exterior
     addSectionTitle('Exterior');
-    addTableRow('Exterior Color', specs.color);
+    addTableRow('Exterior Color', specs.exteriorColor);
     addTableRow('Number of Doors', specs.numberOfDoors);
     addTableRow('Car Type', specs.carType);
     if (specs.features?.exterior?.length) {
@@ -133,7 +133,7 @@ export async function generateSpecsWithImagesPDF(specs: any) {
     // Add images
     if (specs.images?.length) {
         for (let i = 0; i < specs.images.length; i++) {
-            const imgUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}${specs.images[i]}`;
+            const imgUrl = `https://tokossmotors.com${specs.images[i]}`;
             const image = await loadImageAsBase64(imgUrl);
 
             if (y + 130 > doc.internal.pageSize.height) {
