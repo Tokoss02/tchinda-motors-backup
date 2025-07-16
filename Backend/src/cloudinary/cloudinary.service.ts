@@ -10,8 +10,7 @@ export class CloudinaryService {
       api_key: process.env.CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
-    console.log('Cloudinary API Key:', process.env.CLOUDINARY_API_KEY);
-    console.log('✅ Cloudinary Cloud Name Loaded:', process.env.CLOUDINARY_CLOUD_NAME);
+
   }
 
   async uploadImage(file: Express.Multer.File): Promise<string> {
