@@ -42,7 +42,7 @@ export default function CarsListing1() {
         ) : (
           <div className="row">
             {recentCars.slice(0, 8).map((car) => (
-              <div key={car._id} className="col-12 col-sm-6 col-md-4">
+              <div key={car._id} className="col-12 col-sm-6 col-md-3 col-lg-3 mb-4">
                 <CarCard car={car} />
               </div>
             ))}

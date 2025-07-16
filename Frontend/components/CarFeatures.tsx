@@ -7,7 +7,7 @@ import {
   INTERIOR_FEATURES,
   OTHERS_FEATURES,
   SAFETY_FEATURES,
-} from './features';
+} from '../../Backend/type/features';
 
 interface CarFeaturesProps {
   onChange: (features: string[]) => void;

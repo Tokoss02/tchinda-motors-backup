@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../Backend/type/features.ts", "../Backend/type/CarFeatures.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../Backend/type/features.ts", "components/CarFeatures.tsx"],
   "exclude": ["node_modules"]
 }
