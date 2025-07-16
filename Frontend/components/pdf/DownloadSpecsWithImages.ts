@@ -133,7 +133,7 @@ export async function generateSpecsWithImagesPDF(specs: any) {
     // Add images
     if (specs.images?.length) {
         for (let i = 0; i < specs.images.length; i++) {
-            const imgUrl = `https://tokossmotors.com${specs.images[i]}`;
+            const imgUrl = specs.images[i];
             const image = await loadImageAsBase64(imgUrl);
 
             if (y + 130 > doc.internal.pageSize.height) {

@@ -49,12 +49,12 @@ export default function Brand2() {
   };
 
   return (
-    <div className="background-100 pt-20 pb-20">
+    <div className="background-100 pt-100 pb-20">
       <div className="container">
         <div className="box-search-category">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <div>
-              <h3 className="heading-4 mb-0 neutral-1000">Premium Brands</h3>
+              <h3 className="heading-4 mb-0 neutral-1000">Our Brands</h3>
               <p className="text-lg-medium neutral-500">Unveil the Finest Selection of High-End Vehicles</p>
             </div>
           </div>

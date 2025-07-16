@@ -8,8 +8,6 @@ import { generateCarSlug } from 'src/utils/slug.util';
 const brandColor = '#CC9823';
 const siteUrl = process.env.FRONTEND_URL || 'https://tokossmotors.com';
 
-console.log('SMTP Credentials:', process.env.MAIL_USER, process.env.MAIL_PASS ? '✅ Set' : '❌ Missing');
-
 @Injectable()
 export class MailService {
   private readonly logger = new Logger(MailService.name);

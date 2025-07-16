@@ -81,7 +81,7 @@ export default function CarsListClient() {
 
       <Search1 />
 
-      <section className="section-box pt-50 background-body">
+      <section className="section-box pt-130 background-body">
         <div className="container">
           <div className="row align-items-end">
             <div className="col-md-9 mb-30 wow">
@@ -109,7 +109,7 @@ export default function CarsListClient() {
                   <div className="box-grid-tours wow">
                     <div className="row g-3">
                       {paginatedCars.map((car) => (
-                        <div className="col-6 col-md-4 col-lg-3" key={car._id}>
+                        <div className="col-12 col-md-4 col-lg-3" key={car._id}>
                           <CarCard car={car} />
                         </div>
                       ))}

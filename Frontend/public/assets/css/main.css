@@ -1457,6 +1457,38 @@ p {
   background-image: url(../imgs/page/blog/icon-search-dark.png);
 } */
 
+/***********************************************************/
+
+.hero-banner.category-banner {
+        height: 100vh;
+        /* max-height: 1050px; */
+    }
+
+.hero-banner.category-banner {
+    height: 90vh;
+    max-height: 650px;
+}
+
+.hero-banner {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background-size: cover;
+    background-color: #f6f6f6;
+    background-position: center;
+}
+
+(max-width: 576px) {
+    .hero-banner.category-banner {
+        height: 90vh;
+        max-height: 250px;
+    }
+}
+
+.d-table {
+    display: table !important;
+}
+/*****************************************************
 .mobile-menu {
 	margin-top: 30px;
 }
@@ -3215,6 +3247,23 @@ label {
   background-position: left 15px center;
   padding-left: 35px;
 } */
+
+/*********************************/
+
+.video-banner video {
+            height: 100% !important;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .video-banner {
+            position: relative;
+            //height: calc(100vh - 320px);
+            width: 100%;
+            overflow: hidden;
+        }
+
+
+/***************************************/
 .card-journey-small.card-journey-small-type-2 .card-image {
 	height: 246px;
 }
@@ -9939,7 +9988,7 @@ a.icon-socials:hover svg path {
 }
 
 .box-search-advance-home10 .box-search-advance {
-	top: -124px;
+	top: 0px; /* from -124 to 0px I did it*/
 }
 
 .form-contact .form-group .cb-remember {

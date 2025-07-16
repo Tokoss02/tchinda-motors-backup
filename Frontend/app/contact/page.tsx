@@ -23,6 +23,7 @@ export default function Contact() {
 	/*const handleCaptchaChange = (token: string | null) => {
 		setCaptchaToken(token);
 	};*/
+	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value, type } = e.target;
 		const newValue =
@@ -54,7 +55,7 @@ export default function Contact() {
 	}
 
 	try {
-		const response = await axios.post(`https://tokossmotors.com/cars/contact`, {
+		const response = await axios.post(`${API_BASE_URL}/cars/contact`, {
 			...formData
 		});
 		setSuccess("Your message has been sent successfully.");
@@ -184,7 +185,7 @@ export default function Contact() {
 						<div className="col-lg-6 mb-30">
 							<div className="ps-lg-5">
 								<h4 className="neutral-1000">Our location</h4>
-								<p className="neutral-500 mb-30">Ras Al Khor Industrial 3, Dubai, United Emirates Arab</p>
+								<p className="neutral-500 mb-30">Ras Al Khor Industrial 3, Dubai, United Arab Emirates</p>
 								<iframe className="h-520 rounded-3" src="https://www.google.com/maps/embed?pb=..." width="100%" height={650} style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
 							</div>
 						</div>

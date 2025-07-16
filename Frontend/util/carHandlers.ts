@@ -18,13 +18,13 @@ export async function addCar(car: Car, token: string): Promise<Car | null> {
 
     formData.append('name', car.name);
     formData.append('brand', car.brand);
-    formData.append('modelCar', car.modelCar);  // Corrected to match the DTO
+    formData.append('modelCar', car.modelCar); 
     formData.append('year', car.year.toString());
     formData.append('condition', car.condition);
     formData.append('price', car.price.toString());
-    formData.append('carType', car.carType);  // Added carType field
-    formData.append('fuelType', car.fuelType); // Added fuelType field
-    formData.append('transmission', car.transmission); // Added transmission field
+    formData.append('carType', car.carType); 
+    formData.append('fuelType', car.fuelType); 
+    formData.append('transmission', car.transmission);
     formData.append('engine', car.engine.toString());
     formData.append('mileage', car.mileage.toString());
     formData.append('seats', car.seats.toString());
@@ -35,7 +35,7 @@ export async function addCar(car: Car, token: string): Promise<Car | null> {
      
      if (car.newImages && Array.isArray(car.newImages)) {
       car.newImages.forEach((file) => {
-        formData.append('images', file); // File object
+        formData.append('images', file);
       });
     }
 

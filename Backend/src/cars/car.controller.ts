@@ -141,15 +141,7 @@ const cleanedImageUrls = imageUrls.map(url =>
 
 @Post('contact')
 async handleContact(@Body() body: any) {
-	const { /*captchaToken,*/ ...contactData } = body;
-
-	/*const captchaRes = await axios.post(
-		`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`
-	);
-
-	if (!captchaRes.data.success || captchaRes.data.score < 0.5) {
-		throw new BadRequestException('Captcha verification failed');
-	}*/
+	const {  ...contactData } = body;
 
 	await this.mailService.sendContactEmail(contactData);
 	return { message: 'Message sent successfully' };

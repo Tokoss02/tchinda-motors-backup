@@ -29,7 +29,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
     // JWT config (move secret to env for security)
     JwtModule.register({
-      secret: 'process.env.JWT_SECRET',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '30d' },
     }),
 

@@ -10,13 +10,13 @@ import { generateSpecsWithImagesPDF } from '@/components/pdf/DownloadSpecsWithIm
 interface CarSpecsPDFProps {
   carId: string;
 }
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:5000';
 const CarSpecsPDF: React.FC<CarSpecsPDFProps> = ({ carId }) => {
   const [specs, setSpecs] = useState<any>(null);
 
   useEffect(() => {
     axios
-      .get(`https://tokossmotors.com/cars/${carId}`)
+      .get(`${API_BASE_URL}/cars/${carId}`)
       .then((res) => setSpecs(res.data))
       .catch((err) => console.error('Error fetching car specs:', err));
   }, [carId]);
