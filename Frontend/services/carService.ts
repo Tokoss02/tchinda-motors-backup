@@ -6,7 +6,7 @@ import { getAuthToken } from '@/util/auth';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-// 🏎️ Fetch all cars
+// 🏎️ Fetch all cars ----
 export const getCars = async (queryParams: Record<string, string> = {}): Promise<Car[]> => {
   const query = new URLSearchParams(queryParams).toString();
   const response = await axios.get<Car[]>(`${API_BASE_URL}/cars${query ? `?${query}` : ''}`);
