@@ -1,11 +1,15 @@
 'use client';
 
-
-import { useState, useEffect, React } from 'react';
-import { COMFORT_CONVENIENCE_FEATURES, EXTERIOR_FEATURES, INTERIOR_FEATURES, OTHERS_FEATURES, SAFETY_FEATURES } from './features';
+import { useState, useEffect } from 'react';
+import {
+  COMFORT_CONVENIENCE_FEATURES,
+  EXTERIOR_FEATURES,
+  INTERIOR_FEATURES,
+  OTHERS_FEATURES,
+  SAFETY_FEATURES,
+} from './features';
 
 interface CarFeaturesProps {
-
   onChange: (features: string[]) => void;
   defaultSelected?: string[];
 }
@@ -77,5 +81,3 @@ export default function CarFeatures({ onChange, defaultSelected = [] }: CarFeatu
     </div>
   );
 }
-
-
