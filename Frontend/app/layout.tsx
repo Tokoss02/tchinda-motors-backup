@@ -5,8 +5,6 @@ import "@/node_modules/react-modal-video/css/modal-video.css"
 import "/public/assets/css/main.css"
 import { Toaster } from 'react-hot-toast';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import ComingSoon from "./coming-soon";
 
 
@@ -95,8 +93,6 @@ export default function RootLayout({
 				{children} {/* Page Content */}
 				<BackToTop /> {/* Optional BackToTop button */}
 				<Toaster position="top-right" reverseOrder={false} />
-				<Analytics />
-				<SpeedInsights />
 				</>
         )}
 			</body>
