@@ -11,7 +11,15 @@ export class CloudinaryService {
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
 
+    console.log('Cloudinary API Key:', process.env.CLOUDINARY_API_KEY ? 'Loaded' : 'Missing');
+    console.log('Cloudinary Cloud Name:', process.env.CLOUDINARY_CLOUD_NAME ? 'Loaded' : 'Missing');
+    console.log('Cloudinary API Secret:', process.env.CLOUDINARY_API_SECRET ? 'Loaded' : 'Missing');
+    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+      throw new Error('Cloudinary configuration is missing. Please check your environment variables.');
+    }
+
   }
+  
 
   async uploadImage(file: Express.Multer.File): Promise<string> {
     return new Promise((resolve, reject) => {
