@@ -153,6 +153,7 @@ export class CarService {
   // Update car details
   async update(id: string, updatedData: Partial<Car>, images: Express.Multer.File[]) {
     const existing = await this.carModel.findById(id);
+    
     if (!existing) throw new NotFoundException('Car not found');
 
     if (images.length > 0) {
