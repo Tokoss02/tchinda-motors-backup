@@ -14,4 +14,4 @@ node_modules/
 # Ignore large videos
 Frontend/public/videos/hero.mp4
 *.mp4
-.vercel
+
