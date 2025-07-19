@@ -38,7 +38,7 @@ export default function InquiryForm({ car }: InquiryFormProps) {
 
     try {
       const response = await axios.post(
-        `https://tokossmotors.com/inquiry`,
+        `https://api.tokossmotors.com/inquiry`,
         {
           ...formData,
           carSlug: car.carSlug,

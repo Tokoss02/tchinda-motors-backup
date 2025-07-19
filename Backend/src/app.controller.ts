@@ -23,4 +23,5 @@ export class AppController {
 getPing() {
   return { message: '✅ Backend is alive and reachable' };
 }
+
 }
