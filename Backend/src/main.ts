@@ -23,10 +23,10 @@ async function bootstrap() {
   // Enable CORS if you're running frontend and backend on different ports
   app.enableCors({
     origin: [
-      'http://localhost:3000',
-      'https://tokossmotors.com', 'https://www.tokossmotors.com', 
+      'https://tokossmotors.com', 
+      'https://www.tokossmotors.com', 
     ],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    methods: ['GET', 'POST','PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
 
