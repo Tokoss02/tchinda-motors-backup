@@ -8,7 +8,7 @@ export function generateCarSlug(
   exteriorColor: string,
   unique: string
 ): string {
-  return `${slugify(brand)}-${slugify(modelCar)}-${slugify(trimLevel)}-${slugify(engine)}-${slugify(year)}-${slugify(exteriorColor)}-${unique}`;
+  return `${slugify(brand)}-${slugify(modelCar)}-${slugify(trimLevel)}-${slugify(engine)}l-${slugify(year)}-${slugify(exteriorColor)}-${unique}`;
 }
 
 function slugify(text: string | undefined | null): string {
