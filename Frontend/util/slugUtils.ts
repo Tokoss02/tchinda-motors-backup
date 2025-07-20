@@ -15,7 +15,7 @@ export function generateCarSlug(car: Car): string {
     console.log('Generating slug for car:', car);
   }
 
-  return `${brand} ${model} ${trimLevel} ${engine} ${year} ${exteriorColor} ${unique}`
+  return `${brand} ${model} ${trimLevel} ${engine}l ${year} ${exteriorColor} ${unique}`
     .toLowerCase()
     .replace(/\s+/g, '-')
     .replace(/[^\w-]+/g, '');

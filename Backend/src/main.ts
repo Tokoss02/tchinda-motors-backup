@@ -28,6 +28,8 @@ async function bootstrap() {
     ],
     methods: ['GET', 'POST','PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
+    preflightContinue: false,
+  optionsSuccessStatus: 204
   });
 
   //app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
