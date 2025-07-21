@@ -33,7 +33,7 @@ export default function Offcanvas({ isOffcanvas, handleOffcanvas }: any) {
 									</ul>
 								</div>
 							</div>
-							<a className="close-canvas" onClick={handleOffcanvas}> <img alt="Tokoss Motors" src="/assets/imgs/template/icons/close.png" /></a>
+							<a className="close-canvas" href="https://www.tokossmotors.com" onClick={handleOffcanvas}> <img alt="Tokoss Motors" src="/assets/imgs/template/icons/close.png" /></a>
 						</div>
 					</div>
 					<div className="sidebar-canvas-content">
