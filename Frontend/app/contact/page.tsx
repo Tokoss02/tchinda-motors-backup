@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
-import ReCAPTCHA from 'react-google-recaptcha';
+import Head from "next/head";
 
 export default function Contact() {
 	const [formData, setFormData] = useState({
@@ -18,11 +18,7 @@ export default function Contact() {
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	//const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-	/*const handleCaptchaChange = (token: string | null) => {
-		setCaptchaToken(token);
-	};*/
 	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value, type } = e.target;
@@ -49,41 +45,14 @@ export default function Contact() {
 			return;
 		}
 		if (!formData.agree) {
-		setError("You must agree to the Terms and Privacy Policy.");
-		setLoading(false);
-		return;
-	}
-
-	try {
-		const response = await axios.post(`${API_BASE_URL}/cars/contact`, {
-			...formData
-		});
-		setSuccess("Your message has been sent successfully.");
-		setFormData({
-			firstName: '',
-			lastName: '',
-			email: '',
-			phone: '',
-			message: '',
-			agree: false
-		});
-	} catch (err: any) {
-		console.error(err);
-		setError("There was an error sending your message. Please try again.");
-	} finally {
-		setLoading(false);
-	}
-
-		/*if (!captchaToken) {
-			setError("Please verify you're not a robot.");
+			setError("You must agree to the Terms and Privacy Policy.");
 			setLoading(false);
 			return;
-		}*/
+		}
 
-		/*try {
-			const response = await axios.post(`https://tokossmotors.com/cars/contact`, {
-				...formData,
-				captchaToken
+		try {
+			const response = await axios.post(`${API_BASE_URL}/cars/contact`, {
+				...formData
 			});
 			setSuccess("Your message has been sent successfully.");
 			setFormData({
@@ -94,16 +63,22 @@ export default function Contact() {
 				message: '',
 				agree: false
 			});
-			setCaptchaToken(null);
 		} catch (err: any) {
+			console.error(err);
 			setError("There was an error sending your message. Please try again.");
 		} finally {
 			setLoading(false);
-		} */
+		}
+
 	};
 
 	return (
 		<Layout footerStyle={1}>
+			<Head>
+				<title>Contact Us | Tokoss Motors</title>
+				<meta name="description" content="Get in touch with Tokoss Motors for inquiries, or support." />
+				<link rel="canonical" href="https://www.tokossmotors.com/contact" />
+			</Head>
 			<div className="page-header pt-30 background-body">
 				<div className="custom-container position-relative mx-auto">
 					<div className="bg-overlay rounded-12 overflow-hidden">
@@ -162,13 +137,7 @@ export default function Contact() {
 
 									{success && <p className="text-success">{success}</p>}
 									{error && <p className="text-danger">{error}</p>}
-									{/*<div className="col-lg-12 mb-3">
-										<ReCAPTCHA
-											sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-											onChange={handleCaptchaChange}
-											
-										/>
-									</div>*/}
+
 
 									<div className="col-lg-12">
 										<button className="btn btn-prima w-100 mt-3" type="submit" disabled={loading}>

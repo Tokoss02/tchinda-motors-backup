@@ -28,7 +28,6 @@ export function Sidebar() {
       ],
     },
     //{ label: 'Users', href: '/dashboard/users', icon: <Users size={18} /> },
-    { label: 'Settings', href: '/dashboard/settings', icon: <Settings size={18} /> },
   ];
 
   return (
