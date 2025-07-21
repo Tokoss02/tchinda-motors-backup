@@ -55,7 +55,7 @@ export default function Brand2() {
           <div className="d-flex align-items-center justify-content-between mb-3">
             <div>
               <h3 className="heading-4 mb-0 neutral-1000">Our Brands</h3>
-              <p className="text-lg-medium neutral-500">Unveil the Finest Selection of High-End Vehicles</p>
+              <p className="text-lg-medium neutral-800">Unveil the Finest Selection of High-End Vehicles</p>
             </div>
           </div>
 

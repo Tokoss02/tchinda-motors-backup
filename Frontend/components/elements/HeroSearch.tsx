@@ -93,8 +93,8 @@ export default function HeroSearch({
 			<div className="d-flex flex-wrap align-items-end justify-content-between gap-3 bg-white p-4 rounded-3 shadow-sm">
 				{/* All Brands */}
 				<div className="flex-grow-1">
-					<label className="form-label fw-semibold text-dark">All Brands</label>
-					<select className="form-select" name="brand" value={selectedFilters.brand} onChange={handleChange}>
+					<label htmlFor="brand" className="form-label fw-semibold text-dark">All Brands</label>
+					<select id="brand" className="form-select" name="brand" value={selectedFilters.brand} onChange={handleChange}>
 						<option value="">Select</option>
 						{filters.brands.map((brand: string) => (
 							<option key={brand} value={brand}>
@@ -107,8 +107,8 @@ export default function HeroSearch({
 
 				{/* All Models */}
 				<div className="flex-grow-1">
-					<label className="form-label fw-semibold text-dark">All Models</label>
-					<select className="form-select" name="modelCar" value={selectedFilters.modelCar} onChange={handleChange}>
+					<label htmlFor="modelCar" className="form-label fw-semibold text-dark">All Models</label>
+					<select id="modelCar" className="form-select" name="modelCar" value={selectedFilters.modelCar} onChange={handleChange}>
 						<option value="">Select</option>
 						{filters.models.map((model: string) => (
 							<option key={model} value={model}>
@@ -120,8 +120,8 @@ export default function HeroSearch({
 
 				{/* Fuel Type */}
 				<div className="flex-grow-1">
-					<label className="form-label fw-semibold text-dark">Fuel Type</label>
-					<select className="form-select" name="fuelType" value={selectedFilters.fuelType} onChange={handleChange}>
+					<label htmlFor="fuelType" className="form-label fw-semibold text-dark">Fuel Type</label>
+					<select id="fuelType" className="form-select" name="fuelType" value={selectedFilters.fuelType} onChange={handleChange}>
 						<option value="">Select</option>
 						{filters.fuelTypes.map((fuel: string) => (
 							<option key={fuel} value={fuel}>
@@ -133,8 +133,8 @@ export default function HeroSearch({
 
 				{/* Transmission */}
 				<div className="flex-grow-1">
-					<label className="form-label fw-semibold text-dark">Transmission</label>
-					<select className="form-select" name="transmission" value={selectedFilters.transmission} onChange={handleChange}>
+					<label htmlFor="transmission" className="form-label fw-semibold text-dark">Transmission</label>
+					<select id="transmission" className="form-select" name="transmission" value={selectedFilters.transmission} onChange={handleChange}>
 						<option value="">Select</option>
 						{filters.transmissions.map((trans: string) => (
 							<option key={trans} value={trans}>

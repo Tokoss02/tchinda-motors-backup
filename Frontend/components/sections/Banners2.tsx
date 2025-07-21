@@ -12,7 +12,7 @@ export default function Banners2() {
 							<div className="box-banner-1 px-5 position-relative rounded-12 overflow-hidden">
 								<div className="banner-info position-relative z-1 py-5">
 									<div className="banner-title">
-										<h5 className="text-white">Looking to Export car?</h5>
+										<h2 className="text-white">Looking to Export car?</h2>
 									</div>
 									<p className="banner-text text-white text-md-regular py-3">
 										Discover your ideal Export car for every adventure, <br className="d-none d-lg-block" />
@@ -33,7 +33,7 @@ export default function Banners2() {
 							<div className="box-banner-2 px-5 position-relative rounded-12 overflow-hidden mt-lg-0 mt-4">
 								<div className="banner-info position-relative z-1 py-5">
 									<div className="banner-title">
-										<h5 className="text-white">Looking to Modify your car?</h5>
+										<h2 className="text-white">Looking to Modify your car?</h2>
 									</div>
 									<p className="banner-text text-white text-md-regular py-3">
 										Find your matching customize parts for your vehicle <br className="d-none d-lg-block" />

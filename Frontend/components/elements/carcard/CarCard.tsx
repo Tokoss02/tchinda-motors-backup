@@ -73,7 +73,7 @@ export default function CarCard({ car }: CarCardProps) {
           <Link className="text-lg-bold neutral-1000 text-nowrap" href={detailsUrl}>
             {car.name}
           </Link>
-          <p className="heading-6 text-primary mt-1">
+          <p className="heading-6 text-primary-800 mt-1">
             {car.price && car.price > 0
               ? `$${car.price.toLocaleString()}`
               : 'Ask for Price'}
