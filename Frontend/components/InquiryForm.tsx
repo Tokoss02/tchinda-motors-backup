@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { event as gtagEvent } from '@/util/gtag';
 
 interface InquiryFormProps {
   car: {
@@ -46,6 +47,15 @@ export default function InquiryForm({ car }: InquiryFormProps) {
           modelSlug: car.modelSlug,
         }
       );
+
+      // ✅ Google Analytics Event Tracking
+    gtagEvent({
+      action: 'submit_form',
+      category: 'Contact',
+      label: 'Inquiry Form Submission',
+    });
+
+
       setSuccess('Inquiry submitted successfully!');
       setFormData({
         name: '',

@@ -7,6 +7,7 @@ import MobileMenu from './MobileMenu'
 import Offcanvas from './Offcanvas'
 import Footer from './footer/Footer'
 import Header from './header/Header'
+import { event } from "@/util/gtag";
 
 
 
@@ -81,18 +82,25 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="Chat on WhatsApp"
-				>
+				onClick={() =>
+					event({
+						action: 'click_whatsapp',
+						category: 'Social',
+						label: 'Floating WhatsApp Button',
+					})
+				}
+			>
 				<img
 					src="/assets/whatsapp.svg" // Replace with your WhatsApp icon path
 					alt="WhatsApp"
 					style={{
-					width: "50px",
-					height: "50px",
-					position: "fixed",
-					bottom: "90px",
-					right: "20px",
-					zIndex: 9999,
-					cursor: "pointer",
+						width: "50px",
+						height: "50px",
+						position: "fixed",
+						bottom: "90px",
+						right: "20px",
+						zIndex: 9999,
+						cursor: "pointer",
 					}}
 				/>
 			</a>

@@ -6,7 +6,7 @@ import "/public/assets/css/main.css"
 import { Toaster } from 'react-hot-toast';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ComingSoon from "./coming-soon";
-
+import Script from 'next/script';
 
 const urbanist = Urbanist({
 	weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -14,7 +14,9 @@ const urbanist = Urbanist({
 	variable: "--urbanist",
 	display: 'swap',
 })
+
 const isMaintenance = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
+
 export const metadata: Metadata = {
 	title: "Tokoss Motors | Global Car Exports from Dubai to Africa & Beyond",
 	description: "Explore Tokoss Motors, your trusted car dealership in Dubai, specializing in exporting high-quality vehicles to Africa and worldwide. Find used cars, new cars luxury vehicles, and more with reliable shipping services.",
@@ -62,7 +64,7 @@ export default function RootLayout({
 				<link rel="me" href="https://www.tiktok.com/@tokossmotors" />
 				<link rel="me" href="https://www.instagram.com/tokossmotors" />
 				<link rel="me" href="https://x.com/tokossmotors" />
-				
+
 
 				<script
 					type="application/ld+json"
@@ -83,18 +85,36 @@ export default function RootLayout({
 						}),
 					}}
 				/>
-				{/* Add any other meta tags or links here */}
+				{/* Google Analytics Tracking */}
+				<Script
+					strategy="afterInteractive"
+					src="https://www.googletagmanager.com/gtag/js?id=G-EC6VB11EY5"
+				/>
+				<Script
+					id="google-analytics"
+					strategy="afterInteractive"
+					dangerouslySetInnerHTML={{
+						__html: `
+							window.dataLayer = window.dataLayer || [];
+							function gtag(){dataLayer.push(arguments);}
+							gtag('js', new Date());
+							gtag('config', 'G-EC6VB11EY5', {
+								page_path: window.location.pathname,
+							});
+						`,
+					}}
+				/>
 			</head>
 			<body className={urbanist.variable}>
 				{isMaintenance ? (
-          <ComingSoon /> // 👈 Only show this page if maintenance mode is on
-        ) : (
-          <>
-				{children} {/* Page Content */}
-				<BackToTop /> {/* Optional BackToTop button */}
-				<Toaster position="top-right" reverseOrder={false} />
-				</>
-        )}
+					<ComingSoon /> // 👈 Only show this page if maintenance mode is on
+				) : (
+					<>
+						{children} {/* Page Content */}
+						<BackToTop /> {/* Optional BackToTop button */}
+						<Toaster position="top-right" reverseOrder={false} />
+					</>
+				)}
 			</body>
 		</html>
 	)

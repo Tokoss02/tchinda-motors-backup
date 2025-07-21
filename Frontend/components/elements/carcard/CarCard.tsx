@@ -21,6 +21,13 @@ export default function CarCard({ car }: CarCardProps) {
     : Array.isArray(car.images) && typeof car.images[0] === 'string'
       ? car.images[0]
       : null;
+const handleCarClick = () => {
+  gtagEvent({
+    action: 'click_car_detail',
+    category: 'Inventory',
+    label: car.name || 'Unknown Car',
+  });
+};
 
   const imageUrl = firstImage
     ? firstImage.startsWith('http') || firstImage.startsWith('/')
@@ -38,7 +45,7 @@ export default function CarCard({ car }: CarCardProps) {
 
     <div className="card-journey-small background-card hover-up card-image img">
       <div className="card-image">
-        <Link href={detailsUrl}>
+        <Link href={detailsUrl} onClick={handleCarClick}>
 
           <Image
             src={imageUrl}
@@ -70,7 +77,7 @@ export default function CarCard({ car }: CarCardProps) {
         </div>
 
         <div className="card-title">
-          <Link className="text-lg-bold neutral-1000 text-nowrap" href={detailsUrl}>
+          <Link className="text-lg-bold neutral-1000 text-nowrap" href={detailsUrl} onClick={handleCarClick}>
             {car.name}
           </Link>
           <p className="heading-6 text-primary-800 mt-1">
@@ -99,3 +106,7 @@ export default function CarCard({ car }: CarCardProps) {
     </div>
   );
 }
+function gtagEvent(arg0: { action: string; category: string; label: string; }) {
+  throw new Error('Function not implemented.');
+}
+
