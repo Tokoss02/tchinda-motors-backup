@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BarChart3, CarFront, Car } from 'lucide-react';
 import { clearAuthToken, getAuthToken } from '@/util/auth';
+import Head from 'next/head';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -55,16 +56,19 @@ export default function DashboardPage() {
   );
 
   return (
-    
+
+    <>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
+
       <div className="container py-4">
         <div className="row">
           <StatCard icon={BarChart3} label="Total Cars" count={stats.total} color="bg-primary" />
           <StatCard icon={CarFront} label="New Cars" count={stats.new} color="bg-success" />
           <StatCard icon={Car} label="Used Cars" count={stats.used} color="bg-warning" />
         </div>
-        
       </div>
-      
-    
+    </>
   );
 }

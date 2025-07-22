@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { saveAuthToken } from "@/util/auth";
+import Head from 'next/head';
 
 export default function Login() {
 	const [email, setEmail] = useState("");
@@ -41,6 +42,10 @@ export default function Login() {
 	};
 
 	return (
+		<>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
 		<div className="container pt-140 pb-170">
 			<div className="row">
 				<div className="col-lg-5 mx-auto">
@@ -111,5 +116,6 @@ export default function Login() {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 }

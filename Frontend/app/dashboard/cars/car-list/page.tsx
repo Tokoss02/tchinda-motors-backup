@@ -7,6 +7,7 @@ import { Car, emptyCar } from '@/types/carvalue';
 import { addCar, updateCar, deleteCar } from '@/util/carHandlers';
 import CarModal from '@/components/Modals/CarFormModal';
 import PageHeader from '@/components/elements/PageHeader';
+import Head from 'next/head';
 
 export default function CarsPage() {
 
@@ -50,6 +51,10 @@ export default function CarsPage() {
 
   // ========== RENDER ==========
   return (
+    <>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
 
     <div className="p-6 bg-gray-100 min-h-screen">
 
@@ -90,7 +95,7 @@ export default function CarsPage() {
         />
       )}
     </div>
-
+      </>
 
   );
 
@@ -163,6 +168,8 @@ export default function CarsPage() {
     } catch (err) {
       console.error('Failed to update car:', err);
     }
+    
   }
+  
 
 }
