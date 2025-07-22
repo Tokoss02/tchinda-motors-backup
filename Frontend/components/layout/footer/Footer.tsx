@@ -16,7 +16,7 @@ export default function Footer1() {
 								<div className="box-info-contact mt-0">
 									<p className="text-md neutral-400 icon-address">Ras Al Khor Industrtial 3, Dubai</p>
 									<p className="text-md neutral-400 icon-worktime">Hours: 8:00 - 19:00, Mon - Sat</p>
-									<p className="text-md neutral-400 icon-email">support@tokossmotors.com</p>
+									<p className="text-md neutral-400 icon-email">contact@tokossmotors.com</p>
 								</div>
 
 							</div>

@@ -60,7 +60,7 @@ const handleCarClick = () => {
       </div>
 
       {/*Condition Badge */}
-      <div className="card-info p-4 pt-30">
+      <div className="card-info p-4 pt-30 text-neutral-900">
         <div className="card-rating">
           <div className="card-left" />
           <div className="card-right">
