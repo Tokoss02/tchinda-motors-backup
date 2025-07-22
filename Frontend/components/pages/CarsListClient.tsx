@@ -19,17 +19,6 @@ export default function CarsListClient() {
   const [filteredCars, setFilteredCars] = useState<Car[]>([]);
   const [settings, setSettings] = useState<Setting | null>(null);
 
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const res = await axios.get<Setting>(`https://tokossmotors.com/settings/home/header`);
-        setSettings(res.data);
-      } catch (err) {
-        console.error('Failed to load settings', err);
-      }
-    };
-    fetchSettings();
-  }, []);
 
   useEffect(() => {
     const brand = searchParams.get('brand') || '';
@@ -68,13 +57,13 @@ export default function CarsListClient() {
           <div className="bg-overlay rounded-12 overflow-hidden">
             <img
               className="w-100 h-100 img-fluid img-banner"
-              src={settings?.imageUrl || '/assets/imgs/page-header/banner6.png'}
+              src={'/assets/imgs/page-header/banner6.png'}
               alt="Tokoss Motors"
             />
           </div>
           <div className="container position-absolute z-1 top-50 start-50 pb-70 translate-middle text-center">
-            <h2 className="text-white mt-4">{settings?.heading || 'Find the Car That Moves You'}</h2>
-            <span className="text-white text-lg-medium">{settings?.subheading || 'Search, Buy and Export'}</span>
+            <h2 className="text-white mt-4">{'Find the Car That Moves You'}</h2>
+            <span className="text-white text-lg-medium">{'Search, Buy and Export'}</span>
           </div>
         </div>
       </div>
