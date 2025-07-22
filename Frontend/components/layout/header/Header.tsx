@@ -127,9 +127,24 @@ export default function Header({ scroll, handleMobileMenu }: any) {
 						<div className="header-left">
 							<div className="header-logo">
 								<Link className="d-flex" href="/">
-									<img className="light-mode" alt="Tokoss Motors" src="/assets/imgs/template/Tokoss-motors-Logo-d.svg" />
-									<img className="dark-mode" alt="Tokoss Motors" src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" />
-								</Link>
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								className="light-mode"
+								alt="Tokoss Motors"
+								loading="eager"
+								fetchPriority="high"
+								width={180}
+								height={75} />
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								className="dark-mode"
+								alt="Tokoss Motors"
+								width={120}
+								height={60}
+								loading="eager"
+								fetchPriority='high'
+							/>
+						</Link>
 							</div>
 							<div className="header-nav">
 								<nav className="nav-main-menu">

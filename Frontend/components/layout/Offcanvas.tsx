@@ -8,9 +8,24 @@ export default function Offcanvas({ isOffcanvas, handleOffcanvas }: any) {
 					<div className="sidebar-canvas-head">
 						<div className="sidebar-canvas-logo">
 							<Link className="d-flex" href="/">
-								<img className="light-mode" alt="Tokoss Motors" src="/assets/imgs/template/Tokoss-motors-Logo-d.svg" />
-								<img className="dark-mode" alt="Tokoss Motors" src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" />
-							</Link>
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								className="light-mode"
+								alt="Tokoss Motors"
+								loading="eager"
+								fetchPriority="high"
+								width={180}
+								height={75} />
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								className="dark-mode"
+								alt="Tokoss Motors"
+								width={120}
+								height={60}
+								loading="eager"
+								fetchPriority='high'
+							/>
+						</Link>
 						</div>
 						<div className="sidebar-canvas-lang">
 							<a className="close-canvas" href="https://www.tokossmotors.com" onClick={handleOffcanvas}> <img alt="Tokoss Motors" src="/assets/imgs/template/icons/close.png" /></a>

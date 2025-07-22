@@ -16,8 +16,23 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 				<PerfectScrollbar className="mobile-header-wrapper-inner">
 					<div className="mobile-header-logo">
 						<Link className="d-flex" href="/">
-							<img className="light-mode" alt="Tokoss Motors" width={180} height={75} src="/assets/imgs/template/Tokoss-motors-Logo-d.svg" />
-							<img className="dark-mode" alt="Tokoss Motors" width={120} height={60} src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" />
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								className="light-mode"
+								alt="Tokoss Motors"
+								loading="eager"
+								fetchPriority="high"
+								width={180}
+								height={75} />
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								className="dark-mode"
+								alt="Tokoss Motors"
+								width={120}
+								height={60}
+								loading="eager"
+								fetchPriority='high'
+							/>
 						</Link>
 						<div className="burger-icon burger-icon-white" onClick={handleMobileMenu} />
 					</div>

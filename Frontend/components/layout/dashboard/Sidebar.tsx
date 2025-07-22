@@ -48,8 +48,23 @@ export function Sidebar() {
       <div className="text-center mb-4">
         {!collapsed ? (
           <>
-            <img className="light-mode" alt="Tokoss Motors" width={180} height={75} src="/assets/imgs/template/Tokoss-motors-Logo-d.svg" />
-            <img className="dark-mode" alt="Tokoss Motors" width={120} height={60} src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" />
+            <img
+								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								className="light-mode"
+								alt="Tokoss Motors"
+								loading="eager"
+								fetchPriority="high"
+								width={180}
+								height={75} />
+							<img
+								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								className="dark-mode"
+								alt="Tokoss Motors"
+								width={120}
+								height={60}
+								loading="eager"
+								fetchPriority='high'
+							/>
           </>
         ) : (
           <img className="light-mode" alt="TM" width={40} height={40} src="/assets/imgs/template/favicon.svg" />
