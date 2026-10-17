@@ -1,6 +1,6 @@
 /***
- Theme Name: Tokoss Motors
- Description: Explore our wide selection of vehicles and experience a service built on trust, expertise, and global reach. Tokoss Motors – Driving Quality Worldwide! 
+ Theme Name: Tchinda Motors
+ Description: Explore our wide selection of vehicles and experience a service built on trust, expertise, and global reach. Tchinda Motors – Driving Quality Worldwide! 
  Version: 1.0
  License: GNU General Public License v2 or later
  License URI: http://www.gnu.org/licenses/gpl-2.0.htm
@@ -51,7 +51,7 @@ TABLE CONTENT
 	--bs-color-white: #ffffff;
 	--bs-color-black: #000000;
 	--bs-color-700: #4d4d4d;
-	--bs-background-1000: #001721;
+	--bs-background-1000: #000;
 	--bs-background-white: #ffffff;
 	--bs-color-1000: #000000;
 	--bs-background-body: #ffffff;
@@ -187,14 +187,16 @@ video {
 	font-size: 100%;
 	font: inherit;
 }
+
 /***Cest moi qui a mis ceci*/
 .collapsed .nav-link span,
 .collapsed h4,
 .collapsed .btn span {
-  display: none;
+	display: none;
 }
+
 .collapsed .btn {
-  justify-content: center;
+	justify-content: center;
 }
 
 /***************************/
@@ -304,7 +306,22 @@ li.hr span {
 	display: block;
 }
 
+/*jai ajouter flash text*/
+.flashing-text {
+	animation: flash 1s infinite;
+}
 
+@keyframes flash {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
 
 /*jai ajouter cee code ci le 13-Avril 2025 pour le 2FAE verication*/
 /*--------------------------------------------------------------*/
@@ -315,8 +332,9 @@ li.hr span {
 	align-items: center;
 	height: 100vh;
 	background-color: #e6f7fc;
-  }
-  .twofa-box {
+}
+
+.twofa-box {
 	background: white;
 	padding: 2rem;
 	border-radius: 1.5rem;
@@ -324,32 +342,37 @@ li.hr span {
 	max-width: 400px;
 	width: 100%;
 	text-align: center;
-  }
-  .twofa-icon {
+}
+
+.twofa-icon {
 	font-size: 2.5rem;
 	color: #CC9823;
 	margin-bottom: 0.5rem;
-  }
-  .twofa-title {
+}
+
+.twofa-title {
 	font-weight: 600;
 	font-size: 1.6rem;
 	margin-bottom: 1rem;
-  }
-  .twofa-email {
+}
+
+.twofa-email {
 	width: 100%;
 	padding: 0.7rem 1rem;
 	margin-bottom: 1.2rem;
 	border-radius: 0.7rem;
 	border: 1px solid #ccc;
 	font-size: 1rem;
-  }
-  .twofa-inputs {
+}
+
+.twofa-inputs {
 	display: flex;
 	justify-content: space-between;
 	gap: 0.5rem;
 	margin-bottom: 1.2rem;
-  }
-  .twofa-digit {
+}
+
+.twofa-digit {
 	width: 2.5rem;
 	height: 2.5rem;
 	font-size: 1.5rem;
@@ -357,11 +380,13 @@ li.hr span {
 	border: 2px solid #cacaca;
 	border-radius: 0.6rem;
 	outline: none;
-  }
-  .twofa-digit:focus {
+}
+
+.twofa-digit:focus {
 	border-color: #CC9823;
-  }
-  .twofa-button {
+}
+
+.twofa-button {
 	background-color: #CC9823;
 	color: white;
 	padding: 0.7rem 1.5rem;
@@ -370,9 +395,9 @@ li.hr span {
 	font-size: 1rem;
 	cursor: pointer;
 	width: 100%;
-  }
+}
 
-  .twofa-submit {
+.twofa-submit {
 	background-color: #CC9823;
 	color: white;
 	padding: 0.6rem 1.5rem;
@@ -380,26 +405,64 @@ li.hr span {
 	border-radius: 0.5rem;
 	font-size: 1rem;
 	cursor: pointer;
-  }
+}
 
-  .twofa-button:hover {
+.twofa-button:hover {
 	background-color: #e4e6e8;
-	color:#000000;
-  }
-  .twofa-result {
+	color: #000000;
+}
+
+.twofa-result {
 	margin-top: 1rem;
 	color: #333;
 	font-size: 0.9rem;
-  }
+}
 
 
 /*----------------------------------------------------*/
 
-.modal-backdrop {
-  z-index: 1050;
+.list-feature-car {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
 }
+
+.item-feature-car {
+	flex: 1 1 calc(50% - 10px);
+	/* two per row on mobile */
+	max-width: calc(50% - 10px);
+	box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+	.item-feature-car {
+		flex: 1 1 calc(25% - 10px);
+		/* four per row on tablet/desktop */
+		max-width: calc(25% - 10px);
+	}
+}
+
+
+.item-feature-car-inner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/*gap: 6px;*/
+	background: #e6e6e6;
+	padding: 8px 1px;
+	border-radius: 6px;
+	text-align: center;
+}
+
+/****-----------------------------------*/
+
+.modal-backdrop {
+	z-index: 1050;
+}
+
 .modal {
-  z-index: 1060;
+	z-index: 1060;
 }
 
 
@@ -1460,34 +1523,256 @@ p {
 /***********************************************************/
 
 .hero-banner.category-banner {
-        height: 100vh;
-        /* max-height: 1050px; */
-    }
+	height: 100vh;
+	/* max-height: 1050px; */
+}
 
 .hero-banner.category-banner {
-    height: 90vh;
-    max-height: 650px;
+	height: 90vh;
+	max-height: 650px;
 }
 
 .hero-banner {
-    width: 100%;
-    height: 400px;
-    position: relative;
-    background-size: cover;
-    background-color: #f6f6f6;
-    background-position: center;
+	width: 100%;
+	height: 400px;
+	position: relative;
+	background-size: cover;
+	background-color: #f6f6f6;
+	background-position: center;
 }
 
 (max-width: 576px) {
-    .hero-banner.category-banner {
-        height: 90vh;
-        max-height: 250px;
-    }
+	.hero-banner.category-banner {
+		height: 90vh;
+		max-height: 250px;
+	}
 }
 
 .d-table {
-    display: table !important;
+	display: table !important;
 }
+
+/***************14-10-2026*******************/
+
+
+/* TCHINDA Motors — Premium vehicle card */
+
+.tm-car-card {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 9px rgba(15, 23, 42, 0.07);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.tm-car-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+}
+
+.tm-car-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.72 / 1;
+  overflow: hidden;
+  background: #f1f2f3;
+}
+
+.tm-car-card__image-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.tm-car-card__photo {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.tm-car-card:hover .tm-car-card__photo {
+  transform: scale(1.035);
+}
+
+.tm-car-card__year {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: #292929;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tm-car-card__status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 5px 9px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.tm-car-card__status--sold {
+  background: #c62828;
+}
+
+.tm-car-card__status--booked {
+  background: #e76000;
+}
+
+.tm-car-card__status--coming-soon {
+  background: #087cbf;
+}
+
+.tm-car-card__body {
+  padding: 10px 14px 11px;
+}
+
+.tm-car-card__title {
+  display: block;
+  overflow: hidden;
+  color: #18202d;
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.35;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tm-car-card__title:hover {
+  color: #a9822c;
+}
+
+
+.tm-car-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 7px 0 9px;
+  gap: 8px;
+}
+
+.tm-car-card__specs {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.tm-car-card__spec {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 5px;
+  color: #424955;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tm-car-card__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #303846;
+}
+
+.tm-car-card__divider {
+  width: 1px;
+  height: 15px;
+  flex-shrink: 0;
+  background: #e0e2e5;
+}
+
+.tm-car-card__button {
+  display: inline-flex;
+  min-height: 30px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid #c49a3a;
+  border-radius: 5px;
+  background: #c49a3a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tm-car-card__button:hover {
+  border-color: #a47b20;
+  background: #a47b20;
+  color: #fff;
+}
+
+.tm-car-card__arrow {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .tm-car-card__body {
+    padding: 9px 10px 10px;
+  }
+
+  .tm-car-card__title {
+    font-size: 14px;
+  }
+
+  .tm-car-card__footer {
+    gap: 6px;
+  }
+
+  .tm-car-card__specs {
+    gap: 6px;
+  }
+
+  .tm-car-card__spec {
+    gap: 4px;
+    font-size: 10px;
+  }
+
+  .tm-car-card__icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .tm-car-card__button {
+    min-height: 32px;
+    gap: 4px;
+    padding: 0 7px;
+    font-size: 10px;
+  }
+
+  .tm-car-card__arrow {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+
 /*****************************************************
 .mobile-menu {
 	margin-top: 30px;
@@ -1950,89 +2235,91 @@ body {
 }
 
 .btn-prima {
-	
-      padding: 12px 22px 12px 28px;
+
+	padding: 12px 22px 12px 28px;
 	font-size: 18px !important;
 	font-family: var(--urbanist);
 	font-weight: 700 !important;
-      
-                display: inline-block;
-                outline: 0;
-                cursor: pointer;
-                border: 5px;
-                padding: 0 56px;
-                height: 45px;
-                line-height: 45px;
-                border-radius: 7px;
-                background-color: #001721;
-                color: white;
-                font-weight: 400;
-                font-size: 16px;
-                box-shadow: 0 4px 14px 0 rgb(0 23 33 / 39%);
-                :hover{
-                    background-color: rgba(184,184,134,0.9);
-                    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
-					
-                }
-                
-                
+
+	display: inline-block;
+	outline: 0;
+	cursor: pointer;
+	border: 5px;
+	padding: 0 56px;
+	height: 45px;
+	line-height: 45px;
+	border-radius: 7px;
+	background-color: #001721;
+	color: white;
+	font-weight: 400;
+	font-size: 16px;
+	box-shadow: 0 4px 14px 0 rgb(0 23 33 / 39%);
+
+	:hover {
+		background-color: rgba(184, 184, 134, 0.9);
+		box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+
+	}
+
+
 }
 
-/* ***************** */ 
+/* ***************** */
 .cssbuttons-io-button {
-  background: #001721;
-  color: white;
-  font-family: inherit;
-  padding: 0.35em;
-  padding-left: 1.2em;
-  font-size: 17px;
-  font-weight: 500;
-  border-radius: 0.9em;
-  border: none;
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-  box-shadow: inset 0 0 1.6em -0.6em #001721;
-  overflow: hidden;
-  position: relative;
-  height: 2.8em;
-  padding-right: 3.3em;
-  cursor: pointer;
+	background: #001721;
+	color: white;
+	font-family: inherit;
+	padding: 0.35em;
+	padding-left: 1.2em;
+	font-size: 17px;
+	font-weight: 500;
+	border-radius: 0.9em;
+	border: none;
+	letter-spacing: 0.05em;
+	display: flex;
+	align-items: center;
+	box-shadow: inset 0 0 1.6em -0.6em #001721;
+	overflow: hidden;
+	position: relative;
+	height: 2.8em;
+	padding-right: 3.3em;
+	cursor: pointer;
 }
 
 .cssbuttons-io-button .icon {
-  background: white;
-  margin-left: 1em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.2em;
-  width: 2.2em;
-  border-radius: 0.7em;
-  box-shadow: 0.1em 0.1em 0.6em 0.2em #001721;
-  right: 0.3em;
-  transition: all 0.3s;
+	background: white;
+	margin-left: 1em;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.2em;
+	width: 2.2em;
+	border-radius: 0.7em;
+	box-shadow: 0.1em 0.1em 0.6em 0.2em #001721;
+	right: 0.3em;
+	transition: all 0.3s;
 }
 
 .cssbuttons-io-button:hover .icon {
-  width: calc(100% - 0.6em);
+	width: calc(100% - 0.6em);
 }
 
 .cssbuttons-io-button .icon svg {
-  width: 1.1em;
-  transition: transform 0.3s;
-  color: #001721;
+	width: 1.1em;
+	transition: transform 0.3s;
+	color: #001721;
 }
 
 .cssbuttons-io-button:hover .icon svg {
-  transform: translateX(0.1em);
+	transform: translateX(0.1em);
 }
 
 .cssbuttons-io-button:active .icon {
-  transform: scale(0.95);
+	transform: scale(0.95);
 }
-//************************
+
+/************************
 
 
 .btn.btn-primary {
@@ -3026,7 +3313,7 @@ label {
 	padding: 38px 30px;
 	background-color: var(--bs-neutral-0);
 	border-radius: 12px;
-	position: relative;
+	/*position: relative;*/
 	margin-top: -40px;
 }
 
@@ -3055,7 +3342,7 @@ label {
 }
 
 .card-journey-small .card-info .card-facilities .item-facilities p.gear {
-	background-image: url(../imgs/page/homepage8/engineering.svg);
+	content: "⚙";
 }
 
 .card-journey-small .card-info .card-facilities .item-facilities p.fuel {
@@ -3131,7 +3418,7 @@ label {
 }
 
 .card-journey-small .card-info .card-title {
-	margin-bottom: 8px;
+	margin-bottom: 0px;
 }
 
 .card-journey-small .card-info .card-title a {
@@ -3166,10 +3453,9 @@ label {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	margin-top: -15px;
-	padding-top: 27px;
-	border-top: 1px solid var(--bs-border-color);
-	margin-bottom: 15px;
+	margin-top: -1px;
+	padding-top: 5px;
+	margin-bottom: 1px;
 }
 
 .card-journey-small .card-info .card-program .card-facitlities .card-miles,
@@ -3177,10 +3463,16 @@ label {
 .card-journey-small .card-info .card-program .card-facitlities .card-fuel,
 .card-journey-small .card-info .card-program .card-facitlities .card-seat {
 	width: 50%;
-	padding: 0px 0px 0px 30px;
-	margin-bottom: 13px;
+	padding: 0px 0px 0px 25px;
+	margin-bottom: 5px;
 	color: #000000;
 }
+
+element.style.card {
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
 
 .card-journey-small .card-info .card-program .card-facitlities .card-miles {
 	background: url(../imgs/template/icons/mile.svg) no-repeat left center;
@@ -3251,16 +3543,17 @@ label {
 /*********************************/
 
 .video-banner video {
-            height: 100% !important;
-            object-fit: cover;
-            object-position: center top;
-        }
-        .video-banner {
-            position: relative;
-            //height: calc(100vh - 320px);
-            width: 100%;
-            overflow: hidden;
-        }
+	height: 100% !important;
+	object-fit: cover;
+	object-position: center top;
+}
+
+.video-banner {
+	position: relative;
+	/*height: calc(100vh - 320px);*/
+	width: 100%;
+	overflow: hidden;
+}
 
 
 /***************************************/
@@ -5539,12 +5832,12 @@ label {
 }
 
 .circle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .banner-hero.hero-1 .banner-inner span.bg-circle {
@@ -5654,6 +5947,90 @@ label {
 	}
 }
 
+/*------------- moi ------------------*/
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
+.badge {
+	position: absolute;
+	width: 120px;
+	display: inline-block;
+	margin: 0.5em;
+
+	.title {
+		font-family: "Montserrat", sans-serif;
+		font-weight: bold;
+		font-size: 1.3em;
+		position: absolute;
+		top: 0.1em;
+		left: 0.1em;
+		border-radius: 8px 0px 8px 0px;
+		text-align: center;
+		width: 100%;
+		background: gray;
+		padding: 8px 0;
+	}
+
+	.subtitle {
+		position: absolute;
+		font-family: "Fjalla One", sans-serif;
+		font-size: 1.5em;
+		width: 70%;
+		text-align: right;
+		color: white;
+		position: absolute;
+		top: 100%;
+		left: 45%;
+		transform: translateX(-70%) translateY(-20%);
+
+		&:after {
+			content: "★ ★ ★";
+			display: block;
+			font-size: .4em;
+			position: relative;
+			margin: 0 10px 10px 10px;
+			transition: all .3s;
+		}
+	}
+
+	&:hover .subtitle:after {
+		word-spacing: 20px;
+	}
+}
+
+@mixin setColor($color) {
+	.title {
+		background: $color;
+	}
+
+	.subtitle:after {
+		color: $color;
+	}
+}
+
+.red {
+	@include setColor(#DC514E);
+}
+
+.green {
+	@include setColor(#2ecc71);
+}
+
+.gray {
+	@include setColor(#95a5a6);
+}
+
+.yellow {
+	@include setColor(#f1c40f);
+}
+
+.blue {
+	@include setColor(#3498db);
+}
+
+/*-----------------------------*/
+
 .shape-1 {
 	animation: hero-thumb-animation 2s linear infinite alternate;
 }
@@ -5688,7 +6065,7 @@ label {
 }
 
 .top-bar {
-	background-color: #383838;
+	background-color: #000;
 	padding: 10px 0px;
 	color: var(--bs-color-white);
 }
@@ -5813,8 +6190,8 @@ label {
 }
 
 .header .main-header .header-right {
-	width: 30%;
-	min-width: 405px;
+	width: 10%;
+	min-width: 5px;
 	text-align: right;
 	display: flex;
 	align-items: center;
@@ -8908,7 +9285,7 @@ a.icon-socials:hover svg path {
 	overflow: hidden;
 	z-index: 0;
 }
-  
+
 .video-bg {
 	position: absolute;
 	top: 0;
@@ -8917,16 +9294,17 @@ a.icon-socials:hover svg path {
 	height: 100vh;
 	pointer-events: none;
 }
-  //...........
 
-  .custom-checkbox {
+//...........
+
+.custom-checkbox {
 	position: relative;
 	display: inline-block;
 	width: 18px;
 	height: 18px;
-  }
-  
-  .custom-checkbox input[type="checkbox"] {
+}
+
+.custom-checkbox input[type="checkbox"] {
 	opacity: 0;
 	width: 18px;
 	height: 18px;
@@ -8934,9 +9312,9 @@ a.icon-socials:hover svg path {
 	position: absolute;
 	cursor: pointer;
 	display: none;
-  }
-  
-  .custom-checkbox label {
+}
+
+.custom-checkbox label {
 	display: block;
 	width: 18px;
 	height: 18px;
@@ -8945,15 +9323,15 @@ a.icon-socials:hover svg path {
 	border-radius: 4px;
 	cursor: pointer;
 	position: relative;
-  }
-  
-  .custom-checkbox input[type="checkbox"]:checked + label {
-	background-color:rgb(34, 34, 34);
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label {
+	background-color: rgb(34, 34, 34);
 	border-color: #CC9823;
 	position: relative;
-  }
-  
-  .custom-checkbox input[type="checkbox"]:checked + label::after {
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label::after {
 	content: '';
 	position: absolute;
 	top: 2.5px;
@@ -8963,9 +9341,9 @@ a.icon-socials:hover svg path {
 	border: solid #fff;
 	border-width: 0 2px 2px 0;
 	transform: rotate(45deg);
-  }
-  
-  
+}
+
+
 .box-cta-2 .bg-shape {
 	content: "";
 	position: absolute;
@@ -9988,7 +10366,8 @@ a.icon-socials:hover svg path {
 }
 
 .box-search-advance-home10 .box-search-advance {
-	top: 0px; /* from -124 to 0px I did it*/
+	top: 0px;
+	/* from -124 to 0px I did it*/
 }
 
 .form-contact .form-group .cb-remember {
@@ -11039,6 +11418,67 @@ a.icon-socials:hover svg path {
 	z-index: 2;
 }
 
+/********** Responsive Grid System **********/
+/* Basic reset for row and columns by me*/
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -0.75rem;
+	/* compensate for gutter */
+	margin-right: -0.75rem;
+}
+
+/* Spacing between columns */
+.row>* {
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	margin-bottom: 0.5rem;
+	/* same as g-4 vertical gap */
+	box-sizing: border-box;
+}
+
+/* Default: 1 column */
+.row-cols-1>* {
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+/* Small screens (≥576px): 2 columns */
+@media (min-width: 576px) {
+	.row-cols-sm-2>* {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+}
+
+/* Medium screens (≥768px): 3 columns */
+@media (min-width: 768px) {
+	.row-cols-md-3>* {
+		flex: 0 0 33.3333%;
+		max-width: 33.3333%;
+	}
+}
+
+/* Large screens (≥992px): 4 columns */
+@media (min-width: 992px) {
+	.row-cols-lg-4>* {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+}
+
+/* Optional: control spacing like Bootstrap g-4 (1.5rem gap) */
+.g-4 {
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 1.5rem;
+	margin-top: calc(-1 * var(--bs-gutter-y));
+	margin-right: calc(-0.5 * var(--bs-gutter-x));
+	margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+
+/********************************************/
+
 .box-banner-ads {
 	position: relative;
 }
@@ -11386,9 +11826,9 @@ a.icon-socials:hover svg path {
 	padding: 0px 12px;
 }
 
-.box-content-main {
+/*.box-content-main {
 	padding: 56px 0px 90px 0px;
-}
+}*/
 
 .box-content-main #dropdownSort {
 	padding-right: 0px;
@@ -12161,7 +12601,7 @@ a.icon-socials:hover svg path {
 	}
 
 	.header .main-menu li {
-		padding: 0px 10px;
+		padding: 0px 0px;
 	}
 
 	.box-banner-home4 .box-image-banner-home4 .shape-phone {
@@ -12181,7 +12621,7 @@ a.icon-socials:hover svg path {
 	}
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 885px) {
 	.burger-icon {
 		display: block;
 	}
@@ -12477,7 +12917,7 @@ a.icon-socials:hover svg path {
 	.footer-4,
 	.footer-5 {
 		width: 50%;
-		margin-bottom: 40px;
+		/*margin-bottom: 40px;*/
 	}
 
 	.box-banner-home4 .box-image-banner-home4 .shape-rate {
@@ -13901,7 +14341,7 @@ a.icon-socials:hover svg path {
 	}
 }
 
-@media screen and (min-width: 1200px) and (max-width: 1399.98px) {
+@media screen and (min-width: 885px) and (max-width: 885px) {
 	.burger-icon {
 		display: block;
 	}
@@ -13955,27 +14395,494 @@ a.icon-socials:hover svg path {
 .dropdown-toggle::after {
 	display: none;
 }
+
 .shop-thumb-nav .slick-slide {
 	margin: 0 5px;
 }
+
 .m-w-50px {
 	min-width: 50px;
 }
+
 .btn.btn-clear {
 	padding: 6px 18px;
-  background-color: transparent;
-  border: 0;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 26px;
-  font-weight: 700;
-  color: #000;
-  background-color: var(--bs-brand-2) !important;
+	background-color: transparent;
+	border: 0;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 26px;
+	font-weight: 700;
+	color: #000;
+	background-color: var(--bs-brand-2) !important;
 }
 
 @media (max-width: 767.98px) {
-	.fixed-cols-mobile > * {
-	  flex: 0 0 50% !important;
-	  max-width: 50% !important;
+	.fixed-cols-mobile>* {
+		flex: 0 0 50% !important;
+		max-width: 50% !important;
 	}
+}
+
+
+
+
+
+/*-----------------------------me achille----------------*/
+
+/* =========================================================
+   TCHINDA MOTORS - CAR CARD
+   ========================================================= */
+
+.card-journey-small {
+	width: 100%;
+	max-width: 320px;
+	background: #ffffff;
+	border: 1px solid #ebe7de;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+
+	/* Luxury subtle shadow */
+	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease,
+		border-color 0.25s ease;
+}
+
+/* Hover */
+.card-journey-small:hover {
+	transform: translateY(-4px);
+	border-color: #d4af37;
+	box-shadow: 0 10px 28px rgba(212, 175, 55, 0.14);
+}
+
+
+
+
+
+/* =========================================================
+   STATUS BADGE
+   ========================================================= 
+
+.card-journey-small .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+}
+
+.card-journey-small .badge .title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 29px;
+  padding: 5px 14px !important;
+
+  border-radius: 5px !important;
+
+  font-size: 13px !important;
+  font-weight: 600;
+
+  line-height: 1;
+
+  color: #ffffff;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   CARD INFORMATION
+   ========================================================= 
+
+.card-journey-small .card-info {
+  padding: 20px 14px 14px !important;
+  background: #ffffff;
+}*/
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.card-journey-small .card-title {
+	margin: 0 0 20px;
+}
+
+.card-journey-small .card-title a {
+	display: block;
+
+	color: #171717 !important;
+
+	font-size: 16px !important;
+	font-weight: 600 !important;
+
+	line-height: 1.35;
+
+	text-decoration: none;
+
+	white-space: normal !important;
+	overflow: visible !important;
+	text-overflow: unset !important;
+}
+
+.card-journey-small .card-title a:hover {
+	color: #c9a227 !important;
+}
+
+
+/* Small gold line under title */
+.card-journey-small .card-title::after {
+	content: "";
+
+	display: block;
+
+	width: 34px;
+	height: 2px;
+
+	margin-top: 10px;
+
+	background: #d4af37;
+}
+
+
+
+
+/* =========================================================
+   BOTTOM ACTION AREA
+   ========================================================= */
+
+.card-journey-small .endtime {
+	display: flex !important;
+
+	flex-direction: row !important;
+
+	align-items: center;
+
+	justify-content: space-between;
+
+	width: 100%;
+
+	gap: 10px !important;
+
+	margin-top: 0;
+}
+
+
+/* =========================================================
+   BOOK NOW BUTTON
+   ========================================================= */
+
+.card-journey-small .endtime .btn {
+	display: inline-flex;
+
+	align-items: center;
+	justify-content: center;
+
+	min-width: 85px;
+	height: 35px;
+
+	padding: 0 1px;
+
+	background: #ffffff !important;
+
+	color: #171717 !important;
+
+	/*border: 1px solid #d4af37 !important;*/
+
+	border-radius: 7px !important;
+
+	font-size: 13px !important;
+	font-weight: 600 !important;
+
+	text-decoration: none;
+
+	transition: all 0.25s ease;
+}
+
+.card-journey-small .endtime .btn:hover {
+	background: #d4af37 !important;
+
+	color: #ffffff !important;
+
+	border-color: #d4af37 !important;
+
+	transform: translateY(-1px);
+}
+
+
+
+
+
+/* =========================================================
+   REMOVE UNNECESSARY SPACING
+   ========================================================= */
+
+.card-journey-small .card-rating {
+	display: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= 
+
+@media (max-width: 768px) {
+
+	.card-journey-small {
+		max-width: 100%;
+		border-radius: 9px;
+	}
+
+	.card-journey-small .card-image img {
+		height: 190px !important;
+	}
+
+	.card-journey-small .card-info {
+		padding: 16px 12px 13px !important;
+	}
+
+	.card-journey-small .card-title {
+		margin-bottom: 16px;
+	}
+
+	.card-journey-small .card-title a {
+		font-size: 16px !important;
+	}
+
+	.card-journey-small .card-facitlities {
+		column-gap: 10px;
+		row-gap: 13px;
+	}
+
+	.card-journey-small .card-facitlities p {
+		font-size: 13px !important;
+	}
+
+	.card-journey-small .endtime .btn {
+		min-width: 92px;
+		height: 38px;
+		padding: 0 12px;
+		font-size: 12px !important;
+	}
+
+	.card-journey-small .endtime p {
+		font-size: 15px !important;
+	}
+}
+
+
+=========================================================
+   SMALL MOBILE
+   =========================================================
+
+@media (max-width: 480px) {
+
+	.card-journey-small .card-image img {
+		height: 170px !important;
+	}
+
+	.card-journey-small .card-title a {
+		font-size: 15px !important;
+	}
+
+	.card-journey-small .card-facitlities p {
+		font-size: 12px !important;
+	}
+
+	.card-journey-small .endtime .btn {
+		min-width: 88px;
+		padding: 0 10px;
+	}
+
+	.card-journey-small .endtime p {
+		font-size: 14px !important;
+	}
+}
+	 */
+	 
+
+	 * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+/* Page */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* Card */
+
+.car-card {
+  width: 432px;
+  max-width: 100%;
+  background: #ffffff;
+  overflow: hidden;
+
+  border: 1px solid #eeeeee;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* Image */
+
+.car-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 205px;
+  overflow: hidden;
+  background: #eeeeee;
+}
+
+.car-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Information section */
+
+.car-info {
+  padding: 23px 25px 20px;
+}
+
+/* Title + Price */
+
+.car-main-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.car-main-info h2 {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: #292929;
+  white-space: nowrap;
+}
+
+.price {
+  flex-shrink: 0;
+  color: #c49b3b;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Specs */
+
+.car-specs {
+  display: flex;
+  align-items: center;
+  gap: 43px;
+  margin-top: 26px;
+}
+
+.spec {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #303030;
+
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.spec-icon {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #c49b3b;
+}
+
+.spec-icon svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+  .page {
+    padding: 20px 12px;
   }
+
+  .car-card {
+    width: 100%;
+  }
+
+  .car-image-wrapper {
+    height: 200px;
+  }
+
+  .car-info {
+    padding: 20px;
+  }
+
+  .car-main-info {
+    gap: 10px;
+  }
+
+  .car-main-info h2 {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 17px;
+  }
+
+  .car-specs {
+    gap: 25px;
+    margin-top: 23px;
+  }
+
+  .spec {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .car-main-info {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .car-specs {
+    gap: 18px;
+  }
+}
+	 

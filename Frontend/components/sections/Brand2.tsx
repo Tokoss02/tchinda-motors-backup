@@ -40,6 +40,12 @@ export default function Brand2() {
     ferrari: '/assets/imgs/brand/ferrari.png',
     lexus: '/assets/imgs/brand/lexus.png',
     ram: '/assets/imgs/brand/ram.png',
+    cadillac: '/assets/imgs/brand/cadillac.png',
+    gac: '/assets/imgs/brand/gac.png',
+    geely: '/assets/imgs/brand/geely.png',
+    infiniti: '/assets/imgs/brand/infiniti.png',
+    byd: '/assets/imgs/brand/byd.png',
+    'land rover': '/assets/imgs/brand/land_rover.png',
     // Add more as needed
   };
 
@@ -49,7 +55,7 @@ export default function Brand2() {
   };
 
   return (
-    <div className="background-100 pt-100 pb-20">
+    <div className="background-100 pb-20">
       <div className="container">
         <div className="box-search-category">
           <div className="d-flex align-items-center justify-content-between mb-3">

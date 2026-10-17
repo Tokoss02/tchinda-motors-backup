@@ -1,12 +1,26 @@
-# Node
+# Dependencies
 node_modules/
+
+# Build output
+.next/
+dist/
+build/
+coverage/
+
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
 
-# Next.js
-/frontend/.next/
-/frontend/out/
+# Logs
+*.log
+npm-debug.log*
 
-# NestJS
-/backend/dist/
-/backend/uploads/
+# Local uploads and temporary files
+uploads/
+temp/
 
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/

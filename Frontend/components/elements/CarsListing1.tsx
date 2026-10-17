@@ -5,11 +5,13 @@ import { CarCard } from './carcard';
 import { Car } from '@/types/carvalue';
 import { useCarActions } from '@/hooks/usecarActions';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function CarsListing1() {
   const [recentCars, setRecentCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState(true);
   const { isLoading, error, } = useCarActions();
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
   useEffect(() => {
     const fetchRecentCars = async () => {
       try {
@@ -18,7 +20,7 @@ export default function CarsListing1() {
         setRecentCars(data);
         setLoading(false);
       } catch (err) {
-        console.error('Failed to fetch recent cars:', err);
+        console.error('Error fetching cars. Kindly refresh the page.', err);
         setLoading(false);
       }
     };
@@ -40,9 +42,9 @@ export default function CarsListing1() {
         {isLoading ? (
           <p>Loading cars...</p>
         ) : (
-          <div className="row">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             {recentCars.slice(0, 8).map((car) => (
-              <div key={car._id} className="col-12 col-sm-6 col-md-3 col-lg-3 mb-4">
+              <div key={car._id}>
                 <CarCard car={car} />
               </div>
             ))}

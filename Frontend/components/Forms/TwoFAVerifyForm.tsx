@@ -1,4 +1,25 @@
+
 'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function TwoFAPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/dashboard');
+  }, [router]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <p>/dashboard</p>
+    </div>
+  );
+}
+
+
+{/*'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -129,4 +150,6 @@ export default function TwoFAPage() {
       </form>
     </div>
   );
-}
+}*/}
+
+

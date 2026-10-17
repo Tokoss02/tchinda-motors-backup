@@ -18,22 +18,22 @@ export async function addCar(car: Car, token: string): Promise<Car | null> {
 
     formData.append('name', car.name);
     formData.append('brand', car.brand);
-    formData.append('modelCar', car.modelCar); 
+    formData.append('modelCar', car.modelCar);
     formData.append('year', car.year.toString());
     formData.append('condition', car.condition);
     formData.append('price', car.price.toString());
-    formData.append('carType', car.carType); 
-    formData.append('fuelType', car.fuelType); 
+    formData.append('carType', car.carType);
+    formData.append('fuelType', car.fuelType);
     formData.append('transmission', car.transmission);
     formData.append('engine', car.engine.toString());
     formData.append('mileage', car.mileage.toString());
     formData.append('seats', car.seats.toString());
     formData.append('DriveType', car.DriveType);
-    
 
-     // ✅ Append only File objects
-     
-     if (car.newImages && Array.isArray(car.newImages)) {
+
+    // ✅ Append only File objects
+
+    if (car.newImages && Array.isArray(car.newImages)) {
       car.newImages.forEach((file) => {
         formData.append('images', file);
       });
@@ -67,42 +67,35 @@ export async function updateCar(car: Car, token: string): Promise<Car | null> {
   }
 
   const sanitized = sanitizeCarData(car);
-
   try {
     const formData = new FormData();
     // Append updated fields
-    formData.append('name', car.name);
-    formData.append('brand', sanitized.brand);
-    formData.append('modelCar', sanitized.modelCar);
-    formData.append('year', sanitized.year.toString());
-    formData.append('condition', sanitized.condition);
-    formData.append('price', sanitized.price.toString());
-    formData.append('carType', sanitized.carType);  // Added carType field
-    formData.append('fuelType', sanitized.fuelType); // Added fuelType field
-    formData.append('transmission', sanitized.transmission); // Added transmission field
-    formData.append('engine', sanitized.engine.toString());
-    formData.append('mileage', sanitized.mileage.toString());
-    formData.append('seats', sanitized.seats.toString());
-    formData.append('DriveType', car.DriveType);
-    
+     Object.entries({
+      name: sanitized.name,
+      brand: sanitized.brand,
+      modelCar: sanitized.modelCar,
+      year: sanitized.year.toString(),
+      condition: sanitized.condition,
+      price: sanitized.price.toString(),
+      carType: sanitized.carType,
+      fuelType: sanitized.fuelType,
+      transmission: sanitized.transmission,
+      engine: sanitized.engine.toString(),
+      mileage: sanitized.mileage.toString(),
+      seats: sanitized.seats.toString(),
+      DriveType: sanitized.DriveType,
+    }).forEach(([key, value]) => formData.append(key, value));
 
     // Handle images if provided
     if (car.newImages && Array.isArray(car.newImages)) {
-  car.newImages.forEach((file) => {
-    console.log('Images being uploaded:', car.newImages);
-          console.log('Each image type:', car.newImages?.map(img => typeof img));
-    formData.append('images', file); // This must be a File object
-  });
-}
+      car.newImages.forEach((file) => {
+        console.log('Images being uploaded:', car.newImages);
+        console.log('Each image type:', car.newImages?.map(img => typeof img));
+        formData.append('images', file); // This must be a File object
+      });
+    }
 
-// Append new image files
-if (car.newImages && Array.isArray(car.newImages)) {
-  car.newImages.forEach((file) => {
-    formData.append('images', file); // backend expects this for FilesInterceptor
-  });
-}
-
-    const res = await fetch(`${API_BASE_URL}/cars/${car._id}`, {
+    const res = await fetch(`${API_BASE_URL}/cars/${sanitized._id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,

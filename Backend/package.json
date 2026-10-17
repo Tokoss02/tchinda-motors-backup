@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "copy:templates": "cp -r src/email/templates dist/src/email/",
+    "copy:templates": "node -e \"const fs=require('fs'); fs.cpSync('src/email/templates','dist/email/templates',{recursive:true})\"",
     "postinstall": ""
   },
   "dependencies": {

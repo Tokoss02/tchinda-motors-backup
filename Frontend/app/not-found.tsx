@@ -14,8 +14,8 @@ export default function NotFound() {
 								<h1>404</h1>
 								<h5>Page Not Found</h5>
 								<p className="text-md-medium neutral-500 text-center">Page not available. Please search again or <br /> navigate using the menu.</p>
-								<Link href="/" className="btn btn-primary mt-30"><img src="/assets/imgs/template/icons/arrow-left.svg" /> Back to Home</Link>
-								<img src="/assets/imgs/template/404.png" alt="Tokoss Motors" />
+								<Link href="/" className="btn btn-primary mt-30"><img src="/assets/imgs/template/icons/arrow-left.svg" alt=""/> Back to Home</Link>
+								<img src="/assets/imgs/template/404.png" alt="Tchinda Motors 404" />
 							</div>
 						</div>
 					</div>

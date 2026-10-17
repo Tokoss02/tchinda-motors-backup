@@ -10,9 +10,10 @@ interface CarTableProps {
   cars: Car[];
   onEdit: (car: Car) => void;
   onDelete: (carId: string) => void;
+  onStatusChange: (id: string, newStatus: string) => void;
 }
 
-export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
+export default function CarTable({ cars, onEdit, onDelete, onStatusChange }: CarTableProps) {
 
   const [selectedCarIds, setSelectedCarIds] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,7 +52,7 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
     const selectedCars = cars.filter((car) => selectedCarIds.includes(car._id));
     if (selectedCars.length === 0) return;
 
-    const headers = ['Brand', 'Model', 'Year', 'trimLevel', 'Type', 'Condition', 'Price'];
+    const headers = ['Brand', 'Model', 'Year', 'trimLevel', 'Type', 'Condition', 'Price', 'Status'];
     const rows = selectedCars.map(car => [
       car.brand,
       car.modelCar,
@@ -59,7 +60,8 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
       car.year.toString(),
       car.carType,
       car.condition,
-      car.price.toString()
+      car.price.toString(),
+      car.CarStatus,
     ]);
 
     const csvContent =
@@ -74,9 +76,6 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
     link.click();
     document.body.removeChild(link);
   };
-
-
-
 
   return (
     <div className="table-responsive">
@@ -193,6 +192,7 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
             <th>Car Type</th>
             <th>Conditions</th>
             <th>Prices ($)</th>
+            <th>Status</th>
             <th className="text-end">Actions</th>
           </tr>
         </thead>
@@ -225,6 +225,20 @@ export default function CarTable({ cars, onEdit, onDelete }: CarTableProps) {
                 <td>{car.carType}</td>
                 <td>{car.condition}</td>
                 <td>$ {car.price}</td>
+                <td>
+                  <select
+                    value={car.CarStatus}
+                    onChange={(e) => onStatusChange(car._id, e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="Available">Available</option>
+                    <option value="Booked">Booked</option>
+                    <option value="Sold">Sold</option>
+                    <option value="Out Stock">Out Stock</option>
+                    <option value="Coming Soon">Coming Soon</option>
+                  </select>
+                </td>
+
                 <td className="text-end">
 
                   <button className="btn btn-sm rounded-3  me-2" style={{ backgroundColor: '#d8d8d8' }} onClick={() => onEdit(car)}>

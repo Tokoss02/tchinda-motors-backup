@@ -88,8 +88,8 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
 
     if (step !== 3) {
       console.warn('Blocked submission: not on final step');
@@ -125,6 +125,11 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
       console.log('✅ Car created:', result);
       toast.success(`Car ${isNew ? 'added' : 'updated'} successfully!`);
 
+      // Close the modal only after saving has completed.
+    if (isModal && onClose) {
+      onClose();
+    }
+
     } catch (err) {
       toast.error(`Error submitting car: ${err instanceof Error ? err.message : 'Unknown error'}`);
       console.error('🚫 Error submitting:', err);
@@ -145,7 +150,7 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
           ))}
         </ul>
       </div>
-      
+
       <form onSubmit={handleSubmit} onKeyDown={(e) => {
         if (e.key === 'Enter' && step !== 3) {
           e.preventDefault();
@@ -188,16 +193,10 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
             <button
               type="button"
               className="btn btn-prima"
-              onClick={() => {
+              onClick={(e) => {
                 if (validateStep(step)) {
-
-                  // Find the form element and trigger its submit method
-                  const form = document.querySelector('form');
-                  if (form) {
-
-                    form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-                    if (isModal && onClose) onClose();
-                  }
+                  handleSubmit(e);   // 👈 directly call handleSubmit
+                  if (isModal && onClose) onClose();
                 }
               }}
             >
@@ -211,7 +210,7 @@ export default function CarFormModal({ isNew, isModal = true, selectedCar, setSe
   );
 
   return isModal ? (
-    
+
     <div className="modal fade show d-block" tabIndex={-1}>
       <div className="modal- modal-lg modal-dialog-centered">
         <div className="modal-content p-4">

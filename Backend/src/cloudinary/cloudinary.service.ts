@@ -24,7 +24,7 @@ export class CloudinaryService {
   async uploadImage(file: Express.Multer.File): Promise<string> {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: 'tokoss/cars' },
+        { folder: 'tchinda/cars' },
         (error, result) => {
           if (error) return reject(error);
           if (!result) return reject(new Error('No result returned from Cloudinary'));

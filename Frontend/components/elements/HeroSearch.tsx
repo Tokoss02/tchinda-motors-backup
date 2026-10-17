@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function HeroSearch({
 	condition,
 	handleSearch,
@@ -17,7 +20,6 @@ export default function HeroSearch({
 }) {
 	const router = useRouter()
 	const searchParams = useSearchParams()
-	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 	// ✅ Initialize filters state
 	const [filters, setFilters] = useState({
@@ -33,7 +35,7 @@ export default function HeroSearch({
 		fuelType: '',
 		transmission: '',
 	})
- /*******************************Have to be delete after*****************************************/
+	/*******************************Have to be delete after*****************************************/
 
 	useEffect(() => {
 		fetch(`${API_BASE_URL}/ping`)
@@ -41,7 +43,7 @@ export default function HeroSearch({
 			.then(data => console.log('Ping response:', data))
 			.catch(err => console.error('Ping failed:', err));
 	}, []);
-/*****************************It's for test only********************************************** */
+	/*****************************It's for test only********************************************** */
 
 	// ✅ Set default selected filters from URL
 	useEffect(() => {
@@ -54,10 +56,21 @@ export default function HeroSearch({
 
 	// ✅ Fetch available filter options based on condition
 	useEffect(() => {
-		fetch(`${API_BASE_URL}/cars/filters?condition=${condition}`)
+		const query = new URLSearchParams();
+		query.set('condition', condition);
+		if (selectedFilters.brand) query.set('brand', selectedFilters.brand);
+		if (selectedFilters.modelCar) query.set('modelCar', selectedFilters.modelCar);
+		if (selectedFilters.fuelType) query.set('fuelType', selectedFilters.fuelType);
+		if (selectedFilters.transmission) query.set('transmission', selectedFilters.transmission);
+		fetch(`${API_BASE_URL}/cars/filters?${query.toString()}`)
 			.then(res => res.json())
 			.then(data => setFilters(data))
-	}, [condition])
+	}, [condition, 
+		selectedFilters.brand, 
+		selectedFilters.modelCar,
+		selectedFilters.fuelType,
+		selectedFilters.transmission,])
+
 
 	// ✅ Update URL and filter state on select change
 	const updateFilters = (name: string, value: string) => {
@@ -89,8 +102,8 @@ export default function HeroSearch({
 	}
 
 	return (
-		<div className="container py-4">
-			<div className="d-flex flex-wrap align-items-end justify-content-between gap-3 bg-white p-4 rounded-3 shadow-sm">
+		<div className="container">
+			<div className="d-flex flex-wrap align-items-end justify-content-between gap-3 p-2 bg-white rounded-3">
 				{/* All Brands */}
 				<div className="flex-grow-1">
 					<label htmlFor="brand" className="form-label fw-semibold text-dark">All Brands</label>

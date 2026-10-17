@@ -7,11 +7,11 @@ export default function InventoryPage() {
   return (
     <Layout footerStyle={1}>
       <Head>
-				<title>Inventory | Tokoss Motors</title>
-				<meta name="description" content="Browse our inventory of vehicles at Tokoss Motors." />
-				<link rel="canonical" href="https://www.tokossmotors.com/inventory" />
+				<title>Inventory | Tchinda Motors</title>
+				<meta name="description" content="Browse our inventory of vehicles at Tchinda Motors." />
+				<link rel="canonical" href="https://www.tchindamotors.com/inventory" />
 			</Head>
-      <Suspense fallback={<div className="container py-5">Loading inventory...</div>}>
+      <Suspense>
         <CarsListClient />
       </Suspense>
     </Layout>

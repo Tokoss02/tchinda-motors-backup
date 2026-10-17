@@ -6,7 +6,7 @@ import * as QRCode from 'qrcode';
 export class TwoFactorService {
   generateSecret(email: string) {
     const secret = speakeasy.generateSecret({
-      name: `TokossCarDealer(${email})`,
+      name: `TchindaCarDealer(${email})`,
     });
 
     return {

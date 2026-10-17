@@ -55,17 +55,17 @@ export default function Login() {
 							<div style={{ textAlign: "center", marginBottom: "1rem" }}>
 								<Link className="d-flex" href="/">
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-d.svg"
 								className="light-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								loading="eager"
 								fetchPriority="high"
 								width={180}
 								height={75} />
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-w.svg"
 								className="dark-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								width={120}
 								height={60}
 								loading="eager"
@@ -74,7 +74,7 @@ export default function Login() {
 						</Link>
 							</div>
 							<div className="text-center">
-								<p>Admin | Tokoss Motors</p>
+								<p>Admin | Tchinda Motors</p>
 								<h4 className="neutral-1000">Sign in</h4>
 							</div>
 							<div className="form-login mt-30">

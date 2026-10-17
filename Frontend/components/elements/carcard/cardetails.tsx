@@ -30,8 +30,23 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
   const [showVideo, setShowVideo] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const getStatusBadgeStyle = (CarStatus?: string) => {
+    switch (CarStatus) {
+      case 'Sold':
+        return { backgroundColor: '#d00202', color: '#fff' };
+      case 'Booked':
+        return { backgroundColor: '#e76000', color: '#000' };
+      /*case 'Out Stock':
+        return { backgroundColor: '#b30c04', color: '#fff' };*/
+      case 'Coming Soon':
+        return { backgroundColor: '#007bceff', color: '#fff' };
+      default:
+        return { backgroundColor: 'white', border: '1px solid #e6a800', color: 'black', display: 'available' };
+    }
+  };
 
   const images = car.images.map((url: string) => ({ src: url }));
+
 
 
   const handlePrev = () => {
@@ -72,6 +87,40 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
   const params = useParams();
   const carSlug = params?.carSlug as string;
   const jsonLd = generateCarJsonLd(car);
+  const imageUrl = `http://localhost:3000${car.images?.[0]}`;
+
+  const handleShare = async (car: Car) => {
+    const shareData = {
+      title: `${car.brand} ${car.modelCar} | Car Details`,
+      description: `Check out this ${car.year} ${car.brand} ${car.modelCar} for sale!`,
+      url: typeof window !== 'undefined' ? window.location.href : '',
+      openGraph: {
+        title: `${car.brand} ${car.modelCar}`,
+        description: `Check out this ${car.brand} ${car.modelCar} available now.`,
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: `${car.brand} ${car.modelCar}`,
+          },
+        ],
+      }
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        console.log('Car shared successfully!');
+      } catch (error) {
+        console.error('Error sharing', error);
+      }
+    } else {
+      navigator.clipboard.writeText(shareData.url);
+      alert('Link copied to clipboard!');
+    }
+  };
+
   return (
 
     <div className="container">
@@ -111,15 +160,23 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
 
         </nav>
       </section>
+
       {/* Car Title */}
       <section className="box-section box-content-tour-detail background-body pt-0">
         <div className="container">
-          <div className="tour-header">
-            <div className="rate-element">
-              <span className="rating">
+          <div className="tour-header" style={{ marginBottom: '0px' }}>
+            {/*<div
+              className="rate-element"
+              style={{
+                backgroundColor: car.condition === 'New' ? '#087d00' : '#ba2528',
+                color: car.condition === 'New' ? '#fff' : '#fff',
+              }}
+            >
+              <span
+                className="rating">
                 {car.condition}
               </span>
-            </div>
+            </div>*/}
             <div className="row">
               <div className="col-lg-8">
                 <div className="tour-title-main">
@@ -127,7 +184,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                 </div>
               </div>
             </div>
-            
+
           </div>
           <div className="row">
             {/* Left Column - Main Content */}
@@ -140,6 +197,28 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
 
                   {/* Main Car Image Section */}
                   <div className="position-relative mb-3">
+                    {car.CarStatus && (
+                      <div className="badge">
+                        <span
+                          className="title text-xs sm:text-sm md:text-base font-semibold px-2 py-1 rounded"
+                          style={{
+                            ...getStatusBadgeStyle(car.CarStatus),
+                          }}
+                        >
+                          {car.CarStatus}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Share Button */}
+                    <button
+                      onClick={() => handleShare(car)}
+                      aria-label="Share"
+                      className="btn btn-light rounded-circle shadow position-absolute top-0 end-0 m-2 z-3 d-flex align-items-center justify-content-center"
+                      style={{ width: '40px', height: '40px', paddingRight: '16px', paddingLeft: '16px', opacity: 0.9 }}
+                    >
+                      <i className="bi bi-share fs-5"></i>
+                    </button>
 
                     <img
                       src={car.images[mainImageIndex]}
@@ -153,7 +232,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                       aria-label="Previous"
 
                       className="btn-light rounded-5 shadow position-absolute top-50 start-0 translate-middle-y z-3 d-flex align-items-center justify-content-center"
-                      style={{ width: '60px', height: '60px', opacity: 0.8 }}
+                      style={{ width: '45px', height: '45px', opacity: 0.8 }}
                     >
                       <i className="bi bi-arrow-left fs-5"></i>
                     </button>
@@ -162,7 +241,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
                       onClick={handleNext}
                       aria-label="Next"
                       className="btn-light rounded-5 shadow position-absolute top-50 end-0 translate-middle-y z-3 d-flex align-items-center justify-content-center"
-                      style={{ width: '60px', height: '60px', opacity: 0.8 }}
+                      style={{ width: '45px', height: '45px', opacity: 0.8 }}
                     >
                       <i className="bi bi-arrow-right fs-5"></i>
                     </button>
@@ -204,66 +283,66 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
 
 
                 <div>
-                  <div className="list-feature-car align-items-start">
-                    <div className="item-feature-car w-md-25">
+                  <div className="row g-2 mb-3">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/km.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/km.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.mileage} Km</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/diesel.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/diesel.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.fuelType}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/auto.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/auto.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.transmission}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/seat.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/seat.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.seats} Seaters</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/bag.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/bag.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.modelCar}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/suv.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/suv.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.carType}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/door.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/door.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.DriveType}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="item-feature-car w-md-25">
+                    <div className="col-6 col-md-3">
                       <div className="item-feature-car-inner">
-                        <div className="feature-image"><img src="/assets/imgs/page/car/lit.svg" alt="Tokoss Motors" /></div>
+                        <div className="feature-image"><img src="/assets/imgs/page/car/lit.svg" alt="Tchinda Motors" /></div>
                         <div className="feature-info">
                           <p className="text-md-medium neutral-1000">{car.engine} Liter </p>
                         </div>
@@ -274,7 +353,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
 
                 {/* Description & Specs */}
                 <div className="accordion" id="carDetailsAccordion">
-                  <div className="accordion-item">
+                  <div className="accordion-item mb-3">
 
                     {/* Car Specs section (with PDF/image download) */}
                     <CarSpecs carId={car._id} />
@@ -296,7 +375,7 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
         </div>
       </section>
 
-      
+
 
       {/* Modal */}
 
@@ -309,8 +388,8 @@ const CarsDetails: React.FC<CarsDetailsProps> = ({ car }) => {
         }))}
         index={photoIndex}
         on={{ view: ({ index }) => setPhotoIndex(index) }}
-       
-       plugins={[Thumbnails]}
+
+        plugins={[Thumbnails]}
         thumbnails={{
           position: 'bottom',
           width: 120,

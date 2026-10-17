@@ -52,7 +52,7 @@ export default function WhyUs1({cls}:any) {
 									</svg>
 								</div>
 								<div className="card-info">
-									<h6 className="text-xl-bold neutral-1000">Get Export Documents and Clearance</h6>
+									<h6 className="text-xl-bold neutral-1000">Get Export Documents</h6>
 									<p className="text-md-medium neutral-500">Required documents:</p>
 										<p className="text-md-medium neutral-500">
 										Vehicle Export Certificate (from the RTA), Car registration card, Copy of passport/ID.</p>
@@ -71,7 +71,7 @@ export default function WhyUs1({cls}:any) {
 									</svg>
 								</div>
 								<div className="card-info">
-									<h6 className="text-xl-bold neutral-1000">Shipping </h6>
+									<h6 className="text-xl-bold neutral-1000">Ship</h6>
 									<p className="text-md-medium neutral-500">Choose your shipping method:</p>
 									<p className="text-md-medium neutral-500">RoRo (Roll-on/Roll-off), Container shipping</p>
 								</div>

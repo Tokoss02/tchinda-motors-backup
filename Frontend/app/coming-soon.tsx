@@ -17,8 +17,8 @@ export default function ComingSoon() {
         {/* ✅ Logo */}
         <div className="mb-6">
           <Image
-            src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" 
-            alt="Tokoss Motors Logo"
+            src="/assets/imgs/template/Tchinda-motors-Logo-w.svg" 
+            alt="Tchinda Motors Logo"
             width={150}
             height={50}
             className="mx-auto"
@@ -33,28 +33,28 @@ export default function ComingSoon() {
         {/* ✅ Social Media Icons */}
         <div className="flex justify-center gap-4 mt-4 text-white text-xl">
           <Link
-            href="https://www.facebook.com/TokossMotorsFze"
+            href="https://www.facebook.com/TchindaMotorsFze"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaFacebookF className="hover:text-blue-400 transition" />
           </Link>
           <Link
-            href="https://www.instagram.com/tokossmotors"
+            href="https://www.instagram.com/tchindamotors"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaInstagram className="hover:text-pink-400 transition" />
           </Link>
           <Link
-            href="https://www.youtube.com/@TokossMotors"
+            href="https://www.youtube.com/@TchindaMotors"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaYoutube className="hover:text-red-500 transition" />
           </Link>
           <Link
-            href="https://www.tiktok.com/@tokossmotors"
+            href="https://www.tiktok.com/@tchindamotors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -64,7 +64,7 @@ export default function ComingSoon() {
 
         {/* Footer */}
         <div className="mt-8 text-xs opacity-60">
-          &copy; {new Date().getFullYear()} Tokoss Motors FZE. All rights reserved.
+          &copy; {new Date().getFullYear()} Tchinda Motors FZE. All rights reserved.
         </div>
       </div>
     </div>

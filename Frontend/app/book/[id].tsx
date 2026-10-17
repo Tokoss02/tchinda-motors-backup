@@ -5,8 +5,11 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Car } from '@/types/carvalue';
 
+
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function BookCarPage() {
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { id } = useParams();
   const [car, setCar] = useState<Car | null>(null);
   const [form, setForm] = useState({
@@ -17,7 +20,7 @@ export default function BookCarPage() {
     message: '',
   });
 
-  
+
 
   useEffect(() => {
     async function fetchCar() {
@@ -53,7 +56,7 @@ export default function BookCarPage() {
         ? `${API_BASE_URL}${car.images[0]}`
         : car.images[0]
       : '/default-car.jpg';
-      
+
 
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-10">
@@ -65,7 +68,7 @@ export default function BookCarPage() {
           <div className="relative w-full h-64 mb-4">
             <Image
               src={imageUrl}
-              alt={car.name}
+              alt={car.name || 'Car image'}
               fill
               className="object-contain rounded-md"
             />

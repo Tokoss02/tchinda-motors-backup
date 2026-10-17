@@ -69,7 +69,7 @@ export class AuthController {
     return {
       message: '2FA code required',
       email: user.email,
-      twoFactorRequired: true,
+      twoFactorRequired: false,
     };
   }
 
@@ -95,7 +95,7 @@ export class AuthController {
 
      // Save base32 secret and enable 2FA
     user.twoFactorSecret = base32;
-    user.isTwoFactorEnabled = true;
+    user.isTwoFactorEnabled = false;
     await user.save();
     
     // Save the base32 secret in the user DB in a real-world scenario

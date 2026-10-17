@@ -15,7 +15,7 @@ const BrandPage = () => {
     const fetchCarsByBrand = async () => {
       try {
         const response = await axios.get<Car[]>(
-          `https://tokossmotors.com/cars?brand=${brand}`
+          `http://localhost:3000/cars?brand=${brand}`
         );
         setCars(response.data);
       } catch (error) {

@@ -24,6 +24,7 @@ import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 
 
+
 @Controller('cars')
 // @UseGuards(JwtAuthGuard)
 export class CarController {
@@ -37,6 +38,12 @@ export class CarController {
   /////////////////////////
   //GET FUBCTION
   //////////////////////////
+
+  @Patch(':id/status')
+  async updateStatus(@Param('id') id: string, @Body('CarStatus') CarStatus: string) {
+    return this.carService.updateStatus(id, CarStatus);
+  }
+
 
 
 
@@ -134,11 +141,9 @@ const cleanedImageUrls = imageUrls.map(url =>
   }
 
 
- 
-
 @Post('contact')
 async handleContact(@Body() body: any) {
-	const {  ...contactData } = body;
+	const {...contactData } = body;
 
 	await this.mailService.sendContactEmail(contactData);
 	return { message: 'Message sent successfully' };
@@ -159,24 +164,44 @@ async handleContact(@Body() body: any) {
   }
 
 
-  @Get('/filters')
-  async getCarFilters(
-    @Query('carType') carType: string,
-    @Query('condition') condition: 'New' | 'Used' | 'all' = 'all',
-  ) {
-    const query: any = {};
+ @Get('/filters')
+async getCarFilters(
+  @Query('carType') carType: string,
+  @Query('condition') condition: 'New' | 'Used' | 'all' = 'all',
+  @Query('brand') brand?: string,
+  @Query('modelCar') modelCar?: string,
 
-    if (carType && carType !== 'all') query.carType = carType;
-    if (condition && condition !== 'all') query.condition = condition;
+) {
+  const query: any = {};
 
-    const cars = await this.carService.find(query);
-    const brands = [...new Set(cars.map(car => car.brand))];
-    const models = [...new Set(cars.map(car => car.modelCar))];
-    const fuelTypes = [...new Set(cars.map(car => car.fuelType))];
-    const transmissions = [...new Set(cars.map(car => car.transmission))];
+  if (carType && carType !== 'all') query.carType = carType;
+  if (condition && condition !== 'all') query.condition = condition;
+  if (brand && brand !== '') query.brand = brand;
+  if (modelCar && modelCar !== '') query.modelCar = modelCar;
 
-    return { brands, models, fuelTypes, transmissions };
+  // Fetch cars based on current filters
+
+  const cars = await this.carService.find(query);
+
+  // ✅ Always get brands from all cars (not only filtered by brand)
+  const allCars = await this.carService.find({});
+  const brands = [...new Set(allCars.map(car => car.brand))];
+
+  // ✅ If brand selected, only show models from that brand
+ let models: string[];
+  if (brand && brand !== '') {
+    models = [...new Set(allCars
+      .filter(car => car.brand === brand)
+      .map(car => car.modelCar))];
+  } else {
+    models = [...new Set(allCars.map(car => car.modelCar))];
   }
+
+  const fuelTypes = [...new Set(cars.map(car => car.fuelType))];
+  const transmissions = [...new Set(cars.map(car => car.transmission))];
+
+  return { brands, models, fuelTypes, transmissions };
+}
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Car> {

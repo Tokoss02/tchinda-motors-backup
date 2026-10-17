@@ -16,7 +16,7 @@ export const useCarActions = () => {
       const data = await getCars();
       setCars(data);
     } catch (error) {
-      setError('Failed to fetch cars.');
+      setError('Error fetching cars. Kindly refresh the page.');
       console.error('Failed to fetch cars:', error);
     } finally {
       setIsLoading(false); // End loading

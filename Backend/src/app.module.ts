@@ -13,11 +13,10 @@ import { TwoFactorService } from './auth/two-factor.service';
 import { JwtModule } from '@nestjs/jwt';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { EmailController } from './email/email.controller';  // Import EmailController
-import { EmailModule } from './email/email.module'; // Add this import
+import { EmailController } from './email/email.controller';
+import { EmailModule } from './email/email.module';
 import { InquiryModule } from './inquiry/inquiry.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
-
 
 
 @Module({
@@ -27,32 +26,24 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
       isGlobal: true,
     }),
 
-    // JWT config (move secret to env for security)
+    // JWT config
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '30d' },
     }),
 
+    // Serve uploads statically
     ServeStaticModule.forRoot({
-       rootPath: join(process.cwd(), 'uploads'),
-       serveRoot: '/uploads',
-     }),
-
-    // Serve /uploads statically (e.g. for images)
-    /*ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
+      rootPath: join(process.cwd(), 'uploads'),
       serveRoot: '/uploads',
-    }),*/
+    }),
 
+    // Connect to MongoDB
+    // First log URI for debugging
+    // (safe if you don’t log passwords in production)
+    ...(console.log('Mongo URI:', process.env.MONGODB_URI), []),
+    MongooseModule.forRoot(process.env.MONGODB_URI || ''),
 
-    // Connect to MongoDB (can override with DATABASE_URL env var)
-    MongooseModule.forRoot(
-      process.env.DATABASE_URL || 'mongodb+srv://tokossmotors:52rbrR0iCSPRTDaw@cluster0.8ekmrcc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-
-      {
-        dbName: process.env.DATABASE_NAME || 'tokoss-db',
-      },
-    ),
     CloudinaryModule,
     EmailModule,
     UsersModule,
@@ -61,7 +52,12 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     InquiryModule,
   ],
 
-  controllers: [AppController, CarController, AuthController, EmailController], // Register AppController here
-  providers: [AppService, AuthService, TwoFactorService],      // Register AppService
+  controllers: [
+    AppController,
+    CarController,
+    AuthController,
+    EmailController,
+  ],
+  providers: [AppService, AuthService, TwoFactorService],
 })
-export class AppModule { }
+export class AppModule {}

@@ -45,7 +45,9 @@ export interface Car extends Document {
   steering?: 'Left Hand Drive (LHD)' | 'Right Hand Drive (RHD)';
   doors?: number;
   upholstery?: 'Fabric' | 'Leather';
-    // ✅ Updated
+  CarStatus?: 'Booked' | 'Sold' | 'Available' | 'Out Stock' | 'Coming Soon';
+  fuelCapacity?: number;
+  // ✅ Updated
   features: {
     interior?: string[];
     exterior?: string[];
@@ -71,6 +73,10 @@ export const CarSchema = new Schema<Car>(
     seats: { type: Number },
     fuelType: { type: String, required: false, enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'] },
     transmission: { type: String, required: false, enum: ['Manual', 'Automatic', 'CVT'] },
+    fuelCapacity: { type: Number, required: false },
+
+    CarStatus: { type: String, enum: ['Booked', 'Available', 'Sold', 'Out Stock', 'Coming Soon'], default: 'Available' },
+
     carType: {
       type: String,
       required: false,
@@ -78,6 +84,7 @@ export const CarSchema = new Schema<Car>(
     },
     DriveType: { type: String, required: false, enum: ['FWD', 'RWD', '4WD', 'AWD'] },
     videoUrl: { type: String },
+
 
     // Feature categories
     features: {
@@ -87,7 +94,7 @@ export const CarSchema = new Schema<Car>(
       comfortConvenience: { type: [String], default: [] },
       otherFeatures: { type: [String], default: [] },
     },
-    
+
 
     // Slugs
     carSlug: { type: String },
@@ -101,7 +108,6 @@ export const CarSchema = new Schema<Car>(
     torque: { type: Number },
     serviceHistory: { type: String, enum: ['Yes', 'No'] },
     cylinders: { type: Number },
-    steeringSide: { type: String },
     numberOfDoors: { type: Number },
     wheelSize: { type: Number },
     exportStatus: { type: String },
@@ -117,7 +123,7 @@ export const CarSchema = new Schema<Car>(
     // Misc
     steering: { type: String, enum: ['Left Hand Drive (LHD)', 'Right Hand Drive (RHD)'] },
     doors: { type: Number },
-    upholstery: { type: String, enum: ['Fabric', 'Leather'] },
+    upholstery: { type: String, enum: ['Fabric', 'Leather', 'Vinyl'] },
   },
   { timestamps: true }
 );

@@ -31,12 +31,12 @@ const BrandMarquee = () => {
                         <img
                           className="light-mode"
                           src={`/assets/imgs/page/homepage2/${brand}.png`}
-                          alt="Tokoss Motors"
+                          alt="Tchinda Motors"
                         />
                         <img
                           className="dark-mode"
                           src={`/assets/imgs/page/homepage2/${brand}-w.png`}
-                          alt="Tokoss Motors"
+                          alt="Tchinda Motors"
                         />
                       </div>
                     </li>

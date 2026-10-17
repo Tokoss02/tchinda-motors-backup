@@ -17,7 +17,7 @@ export default function Hero1() {
 				aria-hidden="true"
 				data-origwidth="100" data-origheight="0" style={{ width: '100%', height: '0px' }}
 			>
-				<source src="/videos/tokossmotors.mp4" type="video/mp4" />
+				<source src="/videos/tchindamotors.mp4" type="video/mp4" />
 			</video>
 
 			{/* 🔲 Overlay for styling (optional) */}

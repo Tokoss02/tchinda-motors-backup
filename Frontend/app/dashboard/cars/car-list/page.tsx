@@ -8,6 +8,10 @@ import { addCar, updateCar, deleteCar } from '@/util/carHandlers';
 import CarModal from '@/components/Modals/CarFormModal';
 import PageHeader from '@/components/elements/PageHeader';
 import Head from 'next/head';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function CarsPage() {
 
@@ -20,7 +24,8 @@ export default function CarsPage() {
   const [showModal, setShowModal] = useState(false); // Modal visibilityded
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [isNew, setIsNew] = useState(false); // Flag to distinguish Add vs Edit
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  
 
 
 
@@ -31,15 +36,22 @@ export default function CarsPage() {
 
     // If token is not found, redirect to 2FA page
     if (!token) return router.push('/2fa');
+
+    // Set token in state
     setToken(token);
 
     // Fetch cars from backend
     fetch(`${API_BASE_URL}/cars`, {
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
         if (Array.isArray(data)) setCars(data);
         else console.error('Unexpected car data:', data);
@@ -47,55 +59,90 @@ export default function CarsPage() {
       .catch((err) => console.error('Failed to fetch cars:', err));
   }, [router]);
 
+  // ========== STATUS HANDLER ==========
+
+
+  // ✅ Put your handleStatusChange here
+  const handleStatusChange = async (id: string, newStatus: string) => {
+    try {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cars/${id}/status`, {
+        CarStatus: newStatus,
+      },
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setCars((prev) =>
+        prev.map((car) =>
+          car._id === id
+            ? { ...car, CarStatus: newStatus as Car['CarStatus'] }
+            : car
+        )
+      );
+    } catch (err) {
+      console.error("Failed to update status", err);
+      alert("Failed to update status");
+    }
+  };
 
 
   // ========== RENDER ==========
   return (
     <>
+    <ToastContainer />
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
-    <div className="p-6 bg-gray-100 min-h-screen">
-
-      {/* Page header */}
-      <PageHeader
-        title=""
-        actionLabel={
-          <>
-            <i className="bi bi-plus-circle me-2 "></i> Add Car
-          </>
-        }
-        actionClassName="btn btn-success btn-sm rounded-3"
-        onActionClick={() => {
-          setSelectedCar({ ...emptyCar });
-          setImageFiles([]);
-          setIsNew(true);
-          setShowModal(true);
-        }}
-      />
       <div className="p-6 bg-gray-100 min-h-screen">
-        <div>
-          <h5>Cars list</h5>
-        </div>
-        <CarTable cars={cars} onEdit={handleEdit} onDelete={handleDelete} />
-      </div>
-      {/* ========== MODAL FORM ========== */}
-      {showModal && selectedCar && (
-        <CarModal
-          isNew={isNew}
-          selectedCar={selectedCar}
-          setSelectedCar={setSelectedCar}
-          onClose={handleCloseModal}
-          onSubmit={(e, images, updatedCar) => {
-            isNew
-              ? handleAdd(e, updatedCar, images)
-              : handleUpdate(e, updatedCar, images);
+
+        {/* Page header */}
+        <PageHeader
+          title=""
+          actionLabel={
+            <>
+              <i className="bi bi-plus-circle me-2 "></i> Add Car
+            </>
+          }
+          actionClassName="btn btn-success btn-sm rounded-3"
+          onActionClick={() => {
+            setSelectedCar({ ...emptyCar });
+            setImageFiles([]);
+            setIsNew(true);
+            setShowModal(true);
           }}
         />
-      )}
-    </div>
-      </>
+        <div className="p-6 bg-gray-100 min-h-screen">
+          <div>
+            <h5>Cars list</h5>
+          </div>
+          <CarTable
+            cars={cars}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onStatusChange={handleStatusChange}
+          />
+        </div>
+        {/* ========== MODAL FORM ========== */}
+        {showModal && selectedCar && (
+          <CarModal
+            isNew={isNew}
+            selectedCar={selectedCar}
+            setSelectedCar={setSelectedCar}
+            onClose={handleCloseModal}
+            onSubmit={(e, images, updatedCar) => {
+              isNew
+                ? handleAdd(e, updatedCar, images)
+                : handleUpdate(e, updatedCar, images);
+            }}
+          />
+        )}
+      </div>
+    </>
 
   );
 
@@ -168,8 +215,8 @@ export default function CarsPage() {
     } catch (err) {
       console.error('Failed to update car:', err);
     }
-    
+
   }
-  
+
 
 }

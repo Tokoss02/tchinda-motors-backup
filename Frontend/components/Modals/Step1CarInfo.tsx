@@ -2,6 +2,7 @@
 'use client';
 import React from 'react';
 import { Car } from '@/types/carvalue';
+import { Cylinder } from 'lucide-react';
 
 interface Props {
     car: Car;
@@ -12,9 +13,8 @@ const Step1CarInfo: React.FC<Props> = ({ car, handleChange }) => {
     const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
     const textFields: (keyof Car)[] = [
-        'brand', 'modelCar', 'engine','trimLevel', 'exteriorColor', 'interiorColor', 'year',  'price', 'mileage', 'seats',
-        'wheelSize', 'doors', 'curbWeight', 'groundClearance', 'wheelbase',
-        'height', 'torque', 'horsepower',
+        'brand', 'modelCar', 'engine','trimLevel', 'cylinders','exteriorColor', 'interiorColor', 'year',  'price', 'mileage', 'seats',
+        'wheelSize', 'doors', 'curbWeight', 'groundClearance', 'wheelbase', 'length', 'width', 'height', 'torque', 'horsepower', 'fuelCapacity',
     ];
 
     const selectFields = [
@@ -24,7 +24,7 @@ const Step1CarInfo: React.FC<Props> = ({ car, handleChange }) => {
         { field: 'carType', options: ['SUV', 'Crossover', 'Sedan', 'Pickup', 'Hatchback', 'Coupe', 'Truck', 'Minivan', 'Bus', 'Van', 'Luxury', 'Jeep'] },
         { field: 'DriveType', options: ['FWD', 'RWD', 'AWD', '4WD'] },
         { field: 'steering', options: ['Left Hand Drive (LHD)', 'Right Hand Drive (RHD)'] },
-        { field: 'upholstery', options: ['Fabric', 'Leather'] },
+        { field: 'upholstery', options: ['Fabric', 'Leather', 'Vinyl'] },
         { field: 'serviceHistory', options: ['Yes', 'No'] },
     ];
 
@@ -46,8 +46,7 @@ const Step1CarInfo: React.FC<Props> = ({ car, handleChange }) => {
                         onChange={(e) =>
                             handleChange(
                                 field,
-                                ['year', 'engine', 'price', 'mileage', 'seats', 'wheelSize', 'doors', 'curbWeight',
-                                    'groundClearance', 'wheelbase', 'height', 'torque', 'horsepower'].includes(field)
+                                ['year', 'engine', 'price', 'mileage', 'seats', 'wheelSize', 'doors', 'curbWeight', 'width', 'height', 'length', 'torque', 'horsepower', 'groundClearance', 'wheelbase', 'cylinders'].includes(field)
                                     ? Number(e.target.value)
                                     : e.target.value
                             )

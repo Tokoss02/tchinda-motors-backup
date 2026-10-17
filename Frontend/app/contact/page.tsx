@@ -19,7 +19,6 @@ export default function Contact() {
 	const [success, setSuccess] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
-	const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value, type } = e.target;
 		const newValue =
@@ -44,14 +43,9 @@ export default function Contact() {
 			setLoading(false);
 			return;
 		}
-		if (!formData.agree) {
-			setError("You must agree to the Terms and Privacy Policy.");
-			setLoading(false);
-			return;
-		}
 
 		try {
-			const response = await axios.post(`${API_BASE_URL}/cars/contact`, {
+			const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/cars/contact`, {
 				...formData
 			});
 			setSuccess("Your message has been sent successfully.");
@@ -75,14 +69,14 @@ export default function Contact() {
 	return (
 		<Layout footerStyle={1}>
 			<Head>
-				<title>Contact Us | Tokoss Motors</title>
-				<meta name="description" content="Get in touch with Tokoss Motors for inquiries, or support." />
-				<link rel="canonical" href="https://www.tokossmotors.com/contact" />
+				<title>Contact Us | Tchinda Motors</title>
+				<meta name="description" content="Get in touch with Tchinda Motors for inquiries, or support." />
+				<link rel="canonical" href="https://www.tchindamotors.com/contact" />
 			</Head>
 			<div className="page-header pt-30 background-body">
 				<div className="custom-container position-relative mx-auto">
 					<div className="bg-overlay rounded-12 overflow-hidden">
-						<img className="w-100 h-100 rounded-12 img-banner" src="/assets/imgs/page-header/banner4.png" alt="Tokoss Motors" />
+						<img className="w-100 h-100 rounded-12 img-banner" src="/assets/imgs/page-header/banner4.png" alt="Tchinda Motors" />
 					</div>
 					<div className="container position-absolute z-1 top-50 start-50 translate-middle">
 						<h2 className="text-white">Contact Us</h2>
@@ -130,7 +124,7 @@ export default function Contact() {
 									<div className="box-remember-forgot">
 										<div className="form-group">
 											<label className="text-sm-medium neutral-500">
-												<input className="cb-remember" type="checkbox" name="agree" checked={formData.agree} onChange={handleChange} /> Agree to our <Link href="/term">Terms of service</Link> and <Link href="/privacy">Privacy Policy</Link>
+												<input className="cb-remember" type="checkbox" name="agree" checked={formData.agree} onChange={handleChange} /> Agree to our <Link href="/term">Terms of service and Privacy Policy</Link>
 											</label>
 										</div>
 									</div>
@@ -155,7 +149,7 @@ export default function Contact() {
 							<div className="ps-lg-5">
 								<h4 className="neutral-1000">Our location</h4>
 								<p className="neutral-500 mb-30">Ras Al Khor Industrial 3, Dubai, United Arab Emirates</p>
-								<iframe className="h-520 rounded-3" src="https://www.google.com/maps/embed?pb=..." width="100%" height={650} style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+								<iframe className="h-520 rounded-3" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.333201211042!2d55.34392487538159!3d25.183871432824843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d018f4b5239%3A0x5b2dbe65e3a72a09!2sRas%20Al%20Khor%20Industrial%20Area%203%20-%20Dubai!5e0!3m2!1sen!2sae!4v1739093452104!5m2!1sen!2sae" width="100%" height={650} style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
 							</div>
 						</div>
 					</div>

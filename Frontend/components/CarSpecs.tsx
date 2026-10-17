@@ -24,22 +24,25 @@ const CarSpecsPDF: React.FC<CarSpecsPDFProps> = ({ carId }) => {
   if (!specs) return <p>Loading car specs...</p>;
 
   return (
-    <div className="container my-5">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-
-        <div className="btn-group container">
+    <div className="container my-4">
+      <div className="row g-2 text-center">
+        <div className="col-12 col-md-4">
           <button
             className="btn btn-secondary w-100 mt-3 rounded me-2"
             onClick={() => generateSpecsWithImagesPDF(specs)}
           >
             PDF (Specs + Images)
           </button>
+        </div>
+        <div className="col-12 col-md-4">
           <button
             className="btn btn-secondary w-100 mt-3 rounded me-2"
             onClick={() => generateSpecsOnlyPDF(specs)}
           >
             PDF (Specs Only)
           </button>
+        </div>
+        <div className="col-12 col-md-4">
           <button
             className="btn btn-secondary w-100 mt-3 rounded me-2"
             onClick={() => generateImagesOnlyPDF(specs)}

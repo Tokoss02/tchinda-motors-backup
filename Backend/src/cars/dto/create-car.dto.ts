@@ -128,6 +128,10 @@ export class CreateCarDto {
   @IsString({ message: 'TrimLevel must be a string' })
   trimLevel?: string;
 
+  @IsString({ message: 'Select CarStatus' })
+  @IsIn(['Booked', 'Available', 'Sold', 'Out Stock', 'Coming Soon'])
+  CarStatus?: string;
+
   // Performance
   @IsOptional()
   @Type(() => Number)
@@ -175,20 +179,25 @@ export class CreateCarDto {
   @IsNumber({}, { message: 'Curb Weight must be a number' })
   curbWeight?: number;
 
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({}, { message: 'Fuel Capacity must be a number' })
+  fuelCapacity?: number;
+
   // Classification
-  @IsString({ message: 'Car type must be a string' })
+  @IsString({ message: 'Select CarType' })
   @IsIn(
     ['SUV', 'Crossover', 'Sedan', 'Pickup', 'Hatchback', 'Truck', 'Coupe', 'Minivan', 'Bus', 'Van', 'Luxury', 'Jeep'],
     { message: 'Invalid car type' }
   )
   carType!: string;
 
-  @IsString({ message: 'Condition must be a string' })
+  @IsString({ message: 'Select Condition' })
   @IsIn(['New', 'Used'], { message: 'Condition must be either New or Used' })
   condition!: string;
 
-  @IsString({ message: 'Transmission must be a string' })
-  @IsIn(['Manual', 'Automatic'], { message: 'Transmission must be Manual or Automatic' })
+  @IsString({ message: 'Select Transmission' })
+  @IsIn(['Manual', 'Automatic', 'CVT'], { message: 'Transmission must be Manual, Automatic or CVT' })
   transmission!: string;
 
   @IsString({ message: 'Fuel type must be a string' })
@@ -205,13 +214,13 @@ export class CreateCarDto {
   interiorColor!: string;
 
   @IsOptional()
-  @IsString({ message: 'Steering must be a string' })
+  @IsString({ message: 'Select Steering' })
   @IsIn(['Left Hand Drive (LHD)', 'Right Hand Drive (RHD)'], { message: 'Steering must be either LHD or RHD' })
   steering?: string;
 
   @IsOptional()
-  @IsString({ message: 'Upholstery must be a string' })
-  @IsIn(['Fabric', 'Leather'], { message: 'Upholstery must be either Fabric or Leather' })
+  @IsString({ message: 'Select Upholstery' })
+  @IsIn(['Fabric', 'Leather', 'Vinyl'], { message: 'Upholstery must be either Fabric, Leather or Vinyl' })
   upholstery?: string;
   
 

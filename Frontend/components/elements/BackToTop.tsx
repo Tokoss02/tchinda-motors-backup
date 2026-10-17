@@ -22,7 +22,7 @@ export default function BackToTop() {
 	return (
 		hasScrolled && (
 			<a
-				id="scrollUp"
+				id=""
 				onClick={handleClick}
 				style={{
 					position: 'fixed',

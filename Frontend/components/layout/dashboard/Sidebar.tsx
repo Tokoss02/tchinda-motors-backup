@@ -49,17 +49,17 @@ export function Sidebar() {
         {!collapsed ? (
           <>
             <img
-								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-d.svg"
 								className="light-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								loading="eager"
 								fetchPriority="high"
 								width={180}
 								height={75} />
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-w.svg"
 								className="dark-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								width={120}
 								height={60}
 								loading="eager"

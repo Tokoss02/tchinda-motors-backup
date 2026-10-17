@@ -10,13 +10,21 @@ export default function Footer1() {
 						<div className="col-md-3 col-sm-12 footer-1">
 							<div className="mt-20 mb-20">
 								<Link className="d-flex" href="/">
-									<img className="light-mode" alt="Tokoss Motors" src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" />
-									<img className="dark-mode" alt="Tokoss Motors" src="/assets/imgs/template/Tokoss-motors-Logo-w.svg" />
+									<img
+										className="light-mode"
+										alt="Tchinda Motors"
+										src="/assets/imgs/template/Tchinda-motors-Logo-w.svg"
+										loading="eager"
+										fetchPriority="high"
+										width={220}
+										height={75}
+									/>
+									<img className="dark-mode" alt="Tchinda Motors" src="/assets/imgs/template/Tchinda-motors-Logo-w.svg" />
 								</Link>
 								<div className="box-info-contact mt-0">
 									<p className="text-md neutral-400 icon-address">Ras Al Khor Industrtial 3, Dubai</p>
 									<p className="text-md neutral-400 icon-worktime">Hours: 8:00 - 19:00, Mon - Sat</p>
-									<p className="text-md neutral-400 icon-email">contact@tokossmotors.com</p>
+									<p className="text-md neutral-400 icon-email">tchindamotors@gmail.com</p>
 								</div>
 
 							</div>
@@ -49,7 +57,7 @@ export default function Footer1() {
 					<div className="footer-bottom mt-5">
 						<div className="row align-items-center justify-content-center">
 							<div className="col-md-6 text-md-start text-center mb-20">
-								<p className="text-sm color-white">© {new Date().getFullYear()} Tokoss Motors Fze. All rights reserved.</p>
+								<p className="text-sm color-white">© {new Date().getFullYear()} Tchinda Motors Fze. All rights reserved.</p>
 							</div>
 							<div className="col-md-6 text-md-end text-center mb-20">
 								<div className="d-flex align-items-center justify-content-center justify-content-md-end">
@@ -57,8 +65,8 @@ export default function Footer1() {
 									<div className="box-socials-footer d-inline-block">
 
 										<Link className="icon-socials icon-facebook"
-											href="https://www.facebook.com/tokossmotorsfze/"
-											aria-label="Visit Tokoss Motors on Facebook"
+											href="https://www.facebook.com/tchindamotorsfze/"
+											aria-label="Visit Tchinda Motors on Facebook"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
@@ -67,8 +75,8 @@ export default function Footer1() {
 											</svg>
 										</Link>
 										<Link className="icon-socials icon-instagram"
-											href="https://www.instagram.com/tokossmotors/"
-											aria-label="Visit Tokoss Motors on Instagram"
+											href="https://www.instagram.com/tchindamotors/"
+											aria-label="Visit Tchinda Motors on Instagram"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
@@ -77,8 +85,8 @@ export default function Footer1() {
 											</svg>
 										</Link>
 										<Link className="icon-socials icon-tiktok"
-											href="https://www.tiktok.com/@tokossmotors/"
-											aria-label="Visit Tokoss Motors on TikTok"
+											href="https://www.tiktok.com/@tchindamotors/"
+											aria-label="Visit Tchinda Motors on TikTok"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
@@ -87,8 +95,8 @@ export default function Footer1() {
 											</svg>
 										</Link>
 										<Link className="icon-socials icon-be"
-											href="https://www.youtube.com/@tokossmotors/"
-											aria-label="Visit Tokoss Motors on YouTube"
+											href="https://www.youtube.com/@tchindamotors/"
+											aria-label="Visit Tchinda Motors on YouTube"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
@@ -97,8 +105,8 @@ export default function Footer1() {
 											</svg>
 										</Link>
 										<Link className="icon-socials icon-twitter"
-											href="https://www.twitter.com/tokossmotors/"
-											aria-label="Visit Tokoss Motors on Twitter"
+											href="https://www.twitter.com/tchindamotors/"
+											aria-label="Visit Tchinda Motors on Twitter"
 											target="_blank"
 											rel="noopener noreferrer"
 										>

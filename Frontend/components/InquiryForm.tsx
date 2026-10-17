@@ -39,7 +39,7 @@ export default function InquiryForm({ car }: InquiryFormProps) {
 
     try {
       const response = await axios.post(
-        `https://api.tokossmotors.com/inquiry`,
+        `https://api.tchindamotors.com/inquiry`,
         {
           ...formData,
           carSlug: car.carSlug,
@@ -75,7 +75,7 @@ export default function InquiryForm({ car }: InquiryFormProps) {
   return (
     <div className="booking-form">
       <div className="head-booking-form">
-          <h4 className="mb-3" >Get Started</h4>
+          <h4 className="mb-3" >Inquire Now</h4>
 
           <form onSubmit={handleSubmit}>
             <label className="form-label">Name</label>
@@ -131,7 +131,7 @@ export default function InquiryForm({ car }: InquiryFormProps) {
             />
 
             <button type="submit" className="btn btn-primary w-100 mt-3 rounded" disabled={loading}>
-              {loading ? 'Submitting...' : 'Inquire Now'}
+              {loading ? 'Submitting...' : 'Send Inquiry'}
             </button>
 
             {success && <div className="alert alert-success mt-3">{success}</div>}

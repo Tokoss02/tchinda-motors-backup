@@ -19,7 +19,6 @@ export default function Categories2() {
 	useEffect(() => {
 		axios.get<CarTypeCount[]>(`${API_BASE_URL}/cars/count-by-type`)
 			.then((res) => {
-				console.log("Fetched Car Types:", res.data)
 				setCarTypes(res.data)
 			})
 			.catch((err) => console.error("API Error:", err))
@@ -46,7 +45,7 @@ export default function Categories2() {
 	return (
 		<section className="section-box background-body border-bottom">
 			<div className="container">
-				<div className="row align-items-end mb-40">
+				<div className="row align-items-end mb-10">
 					<div className="col-md-8">
 						<h3 className="heading-5 py-4 mb-0 neutral-1000">Browse by Type</h3>
 					</div>
@@ -62,7 +61,7 @@ export default function Categories2() {
 
 							return (
 								<div key={index} className="col-4 col-lg-2 col-md-3 col-sm-4  text-center mb-3 wow" data-wow-delay={`${0.1 * (index + 1)}s`}>
-									<div className="card-popular background-100 hover-up position-relative">
+									<div className="card background-100 hover-up position-relative">
 										<Link href={`/inventory/category/${normalized}`}>
 											<div className="card-image border-0">
 												<img src={imageSrc} alt={type.carType} />

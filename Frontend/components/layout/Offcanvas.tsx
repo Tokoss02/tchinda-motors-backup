@@ -9,17 +9,17 @@ export default function Offcanvas({ isOffcanvas, handleOffcanvas }: any) {
 						<div className="sidebar-canvas-logo">
 							<Link className="d-flex" href="/">
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-d.svg"
 								className="light-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								loading="eager"
 								fetchPriority="high"
 								width={180}
 								height={75} />
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-w.svg"
 								className="dark-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								width={120}
 								height={60}
 								loading="eager"
@@ -28,7 +28,7 @@ export default function Offcanvas({ isOffcanvas, handleOffcanvas }: any) {
 						</Link>
 						</div>
 						<div className="sidebar-canvas-lang">
-							<a className="close-canvas" href="https://www.tokossmotors.com" onClick={handleOffcanvas}> <img alt="Tokoss Motors" src="/assets/imgs/template/icons/close.png" /></a>
+							<a className="close-canvas" href="https://www.tchindamotors.com" onClick={handleOffcanvas}> <img alt="Tchinda Motors" src="/assets/imgs/template/icons/close.png" /></a>
 						</div>
 					</div>
 					<div className="sidebar-canvas-content">

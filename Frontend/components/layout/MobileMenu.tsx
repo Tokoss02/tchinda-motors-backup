@@ -17,17 +17,17 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 					<div className="mobile-header-logo">
 						<Link className="d-flex" href="/">
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-d.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-d.svg"
 								className="light-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								loading="eager"
 								fetchPriority="high"
 								width={180}
 								height={75} />
 							<img
-								src="/assets/imgs/template/Tokoss-motors-Logo-w.svg"
+								src="/assets/imgs/template/Tchinda-motors-Logo-w.svg"
 								className="dark-mode"
-								alt="Tokoss Motors"
+								alt="Tchinda Motors"
 								width={120}
 								height={60}
 								loading="eager"
@@ -47,6 +47,8 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 										<li>
 											<Link href="/inventory">Vehicles</Link>
 										</li>
+										<li><Link href="/blog">News</Link></li>
+										<li ><Link href="/about-us">About Us</Link></li>
 										<li>
 											<Link href="/term">Term & Policy</Link>
 										</li>
@@ -54,7 +56,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											<Link href="/contact">Contact Us</Link>
 										</li>
 
-										<li className={`has-children ${isAccordion === 1 ? 'active' : ''}`}>
+										{/*<li className={`has-children ${isAccordion === 1 ? 'active' : ''}`}>
 											<span className="menu-expand" onClick={() => handleAccordion(1)}>
 												<i className="arrow-small-down"></i>
 											</span>
@@ -64,7 +66,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 												<li><Link href="#">French</Link></li>
 												<li><Link href="#">Arabic</Link></li>
 											</ul>
-										</li>
+										</li>*/}
 									</ul>
 								</nav>
 							</div>

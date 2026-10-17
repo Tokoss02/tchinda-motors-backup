@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.tokossmotors.com',
+        hostname: 'api.tchindamotors.com',
         pathname: '/uploads/**',
       },
 

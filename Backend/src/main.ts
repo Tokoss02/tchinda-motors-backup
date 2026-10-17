@@ -16,15 +16,14 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-   app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+   app.use(bodyParser.json({ limit: '100mb' }));
+  app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
 
   // Enable CORS if you're running frontend and backend on different ports
   app.enableCors({
     origin: [
-      'https://tokossmotors.com', 
-      'https://www.tokossmotors.com', 
+      'http://localhost:3000', 
     ],
     methods: ['GET', 'POST','PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,

@@ -9,19 +9,19 @@ import { MailService } from './mail.service';
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
+        host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+        port: process.env.SMTP_PORT,
+        secure: true,
         auth: {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASS,
         },
         tls: {
-          rejectUnauthorized: false,  // Disables SSL certificate validation
+          rejectUnauthorized: true, 
         },
       },
       defaults: {
-        from: '"Tokoss Motors Admin" <tokossmotors@gmail.com>',
+        from: `"Tchinda Motors Fze" <${process.env.EMAIL_USER}>`,
       },
       template: {
         dir: join(__dirname, 'email', 'templates'),

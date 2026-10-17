@@ -56,12 +56,12 @@ export default function Search1() {
 	}
 
 	return (
-		<section className="box-section box-search-advance-home10 background-100">
+		<section className="box-section box-search-advance-home10 background-100 pt-30">
 			<div className="container">
 				<div className="box-search-advance background-card wow">
 					{/* Tabs */}
 					<div className="box-top-search d-flex justify-content-between align-items-center">
-						<div className="left-top-search d-flex gap-3">
+						<div className="left-top-search d-flex gap-2">
 							{['all', 'New', 'Used'].map((type) => (
 								<button
 									key={type}
@@ -74,8 +74,8 @@ export default function Search1() {
 							{/* ✅ Reset Button */}
 							<button
 								onClick={handleResetFilters}
-								className="btn btn-sm text-sm-medium  ms-3"
-								style={{ padding: '4px 12px', borderRadius: '6px' }}
+								className="btn btn-sm text-sm-medium  btn-secondary"
+								style={{ padding: '3px 8px', borderRadius: '6px' }}
 							>
 								Reset Filters
 							</button>

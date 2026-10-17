@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://tokossmotors.com
-
-# Sitemaps
-Sitemap: https://tokossmotors.com/sitemap.xml

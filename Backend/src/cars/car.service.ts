@@ -15,6 +15,10 @@ import { generateCarSlug } from 'src/utils/slug.util';
 export class CarService {
   constructor(@InjectModel('Car') private readonly carModel: Model<Car>) { }
 
+   async updateStatus(id: string, CarStatus: string) {
+  return this.carModel.findByIdAndUpdate(id, { CarStatus }, { new: true });
+}
+
   //querying cars based on the query
   async find(query: any): Promise<Car[]> {
     try {
@@ -49,7 +53,6 @@ export class CarService {
   async getRecentCars(): Promise<Car[]> {
     return this.carModel.find().sort({ createdAt: -1 }).limit(6).exec();
   }
-
 
 
 
@@ -127,7 +130,7 @@ export class CarService {
         createCarDto.brand,
         createCarDto.modelCar,
         createCarDto.trimLevel || 'base',
-        `${createCarDto.engine}l`,
+        `${createCarDto.engine}`,
         String(createCarDto.year),
         createCarDto.exteriorColor,
         (savedCar._id as Types.ObjectId).toString().slice(-6)// last 6 chars of ObjectId

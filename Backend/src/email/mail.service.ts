@@ -6,7 +6,7 @@ import { ContactDto } from 'src/contact/ContactDto';
 import { generateCarSlug } from 'src/utils/slug.util';
 
 const brandColor = '#CC9823';
-const siteUrl = process.env.FRONTEND_URL || 'https://tokossmotors.com';
+const siteUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 @Injectable()
 export class MailService {
@@ -14,12 +14,12 @@ export class MailService {
 
 
   private transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: true,
     auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
     tls: {
       rejectUnauthorized: false,
@@ -30,13 +30,14 @@ export class MailService {
     const { firstName, lastName, email, phone, message } = data;
 
     const mailOptions = {
-  from: `"${firstName} ${lastName}" <${email}>`,
-  to: process.env.CONTACT_RECEIVER || 'achille_fofe@yahoo.fr',
-  subject: '📩 New Contact Message from Tokoss Motors Website',
+  from: `"tchinda Motors Contact Form" <${process.env.EMAIL_USER}>`,
+  to: process.env.EMAIL_HOST || 'contact@tchindamotors.com',
+  subject: '📩 New Contact Message from' + ` ${firstName} ${lastName}`,
+  replyTo: `"${firstName} ${lastName}" <${email}>`,
   html: `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; background-color: #f9f9f9;">
       <div style="text-align: center; padding-bottom: 20px;">
-        <h1 style="color: #CC9823; margin: 0;">Tokoss Motors Fze</h1>
+        <h3 style="color: #CC9823; margin: 0;">tchinda Motors Fze</h3>
         <p style="margin: 0; color: #555;">Premium Cars. Trusted Deals.</p>
       </div>
 
@@ -63,7 +64,7 @@ export class MailService {
       <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
 
       <p style="font-size: 13px; color: #888;">
-        This message was submitted through the <strong>Tokoss Motors</strong> website.
+        This message was submitted through the <strong>tchinda Motors</strong> website.
       </p>
     </div>
   `,
@@ -120,11 +121,11 @@ export class MailService {
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <h1 style="color: ${brandColor};">Tokoss Motors Fze</h1>
+            <h2 style="color: ${brandColor};">tchinda Motors Fze</h2>
             <p style="margin: 0;">Premium Cars. Trusted Deals.</p>
           </div>
           <h2 style="color: ${brandColor};">Hello ${name},</h2>
-          <p>Thank you for reaching out to Tokoss Motors!</p>
+          <p>Thank you for reaching out to tchinda Motors!</p>
           ${
             carLink
               ? `<p>You can view the car you inquired about <a href="${carLink}" style="color: ${brandColor}; text-decoration: underline;">here</a>.</p>`
@@ -134,7 +135,7 @@ export class MailService {
           <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
           <p style="font-size: 14px; color: #666;">
             Regards,<br>
-            <strong>Tokoss Motors Fze</strong><br>
+            <strong>Tchinda Motors Fze</strong><br>
             <a href="${siteUrl}" style="color: ${brandColor};">Visit our website</a>
           </p>
         </div>
@@ -143,7 +144,7 @@ export class MailService {
       const internalHtml = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <h1 style="color: ${brandColor};">New Inquiry Received</h1>
+            <h2 style="color: ${brandColor};">New Inquiry Received</h2>
           </div>
           <table style="width: 100%; border-collapse: collapse;">
             <tr><td style="padding: 8px; font-weight: bold;">Name:</td><td style="padding: 8px;">${name}</td></tr>
@@ -159,7 +160,7 @@ export class MailService {
           </table>
           <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
           <p style="font-size: 14px; color: #666;">
-            This is an automated alert from <strong>Tokoss Motors Fze</strong>.
+            This is an automated alert from <strong>Tchinda Motors Fze</strong>.
           </p>
         </div>
       `;
@@ -167,7 +168,7 @@ export class MailService {
       const attachments = pdfPath
         ? [
             {
-              filename: 'Tokoss-Motors-brochure.pdf',
+              filename: 'Tchinda-Motors-brochure.pdf',
               path: path.resolve(__dirname, '..', '..', 'public', pdfPath),
               contentType: 'application/pdf',
             },
@@ -177,7 +178,7 @@ export class MailService {
 
       // Send to customer
       await this.transporter.sendMail({
-        from: '"Tokoss Motors Fze" <tokossmotors@gmail.com>',
+        from: `"Tchinda Motors Fze" <${process.env.CONTACT_RECEIVER}>`,
         to: email,
         subject: 'Inquiry Confirmation',
         html: htmlContent,
@@ -186,8 +187,8 @@ export class MailService {
 
       // Send internal notification
       await this.transporter.sendMail({
-        from: '"Tokoss Motors Website" <tokossmotors@gmail.com>',
-        to: 'achille_fofe@yahoo.fr',
+        from: `"Tchinda Motors Website" <${process.env.EMAIL_HOST}>`,
+        to: process.env.CONTACT_RECEIVER || 'inquiry@tchindamotors.com',
         subject: 'New Customer Inquiry',
         html: internalHtml,
         attachments,
@@ -205,12 +206,12 @@ export class MailService {
   // ✅ Add this method to support the test endpoint in your controller
   async sendTestEmail() {
     await this.transporter.sendMail({
-      from: '"Tokoss Motors Fze" <tokossmotors@gmail.com>',
-      to: 'tokossmotors@gmail.com',
-      subject: '🚀 Tokoss Motors - Test Email',
-      html: `<p>This is a test email sent from <strong>Tokoss Motors MailService</strong>.</p>`,
+      from: `"Tchinda Motors Fze" <${process.env.EMAIL_USER}>`,
+      to: 'tchindamotors@gmail.com',
+      subject: '🚀 Tchinda Motors - Test Email',
+      html: `<p>This is a test email sent from <strong>Tchinda Motors MailService</strong>.</p>`,
     });
 
-    this.logger.log('Test email sent to tokossmotors@gmail.com');
+    this.logger.log('Test email sent to tchindamotors@gmail.com');
   }
 }

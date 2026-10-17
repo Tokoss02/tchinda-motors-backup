@@ -52,7 +52,9 @@ export interface Car {
   curbWeight: number;
   steering: 'Left Hand Drive (LHD)' | 'Right Hand Drive (RHD)';
   doors: number;
-  upholstery: 'Fabric' | 'Leather';
+  upholstery: 'Fabric' | 'Leather' | 'Vinyl';
+  fuelCapacity?: number;
+  CarStatus: 'Booked' | 'Sold' | 'Available' | 'Out Stock' | 'Coming Soon';
 
   features: {
     interior: string[];
@@ -106,6 +108,8 @@ export const emptyCar: Car = {
   steering: 'Left Hand Drive (LHD)',
   doors: 0,
   upholstery: 'Fabric',
+  fuelCapacity: 0,
+  CarStatus: 'Available',
   features: {
     interior: [],
     exterior: [],

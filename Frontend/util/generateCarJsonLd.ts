@@ -3,9 +3,9 @@ export function generateCarJsonLd(car: any) {
     "@context": "https://schema.org",
     "@type": "Vehicle",
     "name": `${car.brand} ${car.modelCar} ${car.trimLevel} ${car.engine}L ${car.year}`,
-    "description": car.description || `Buy ${car.name} (${car.year}) from Tokoss Motors.`,
-    "url": `https://tokossmotors.com/cars/${car.carSlug}`,
-    "image": car.images.map((url: string) => `https://tokossmotors.com${url}`),
+    "description": car.description || `Buy ${car.name} (${car.year}) from Tchinda Motors.`,
+    "url": `http://localhost:3000/cars/${car.carSlug}`,
+    "image": car.images.map((url: string) => `http://localhost:3000${url}`),
     "brand": {
       "@type": "Brand",
       "name": car.brand
@@ -45,7 +45,7 @@ export function generateCarJsonLd(car: any) {
       "price": car.price,
       "availability": "https://schema.org/InStock",
       "itemCondition": car.condition === 'New' ? "https://schema.org/NewCondition" : "https://schema.org/UsedCondition",
-      "url": `https://tokossmotors.com/cars/${car.carSlug}`
+      "url": `http://localhost:3000/cars/${car.carSlug}`
     }
   };
 }
