@@ -24,3 +24,6 @@ temp/
 .DS_Store
 Thumbs.db
 .vscode/
+# Local patch and temporary file
+/01-features.patch
+/exit
